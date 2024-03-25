@@ -18,7 +18,8 @@ public class FirstPlayer : MonoBehaviour
     private float xRot = 0f; // x축 회전값
     private float mouseX; // 마우스 회전 축값
 
-    void Awake()
+	public float smoothness = 5f; // 부드러운 이동을 결정하는 값
+	void Awake()
     {
         // 마우스 커서가 게임화면을 벗어나지않도록 잠금
         Cursor.lockState = CursorLockMode.Locked;
@@ -50,17 +51,28 @@ public class FirstPlayer : MonoBehaviour
     }
 
     // 플레이어 이동
-    void Move()
+    /*void Move()
     {
         // 카메라가 바라보는 방향으로 대각선 정규화
         moveDir = (Camera.main.transform.forward * vAxis + Camera.main.transform.right * hAxis).normalized;
 
         // 플레이어 이동
         transform.position += isRun ? moveDir * runSpeed * Time.deltaTime : moveDir * walkSpeed * Time.deltaTime;
-    }
+    }*/
+	void Move()
+	{
+		// 카메라가 바라보는 방향으로 대각선 정규화
+		moveDir = (Camera.main.transform.forward * vAxis + Camera.main.transform.right * hAxis).normalized;
 
-    // 마우스 회전
-    void MouseRot()
+		// 이동 방향을 정의
+		Vector3 targetPosition = transform.position + (isRun ? moveDir * runSpeed : moveDir * walkSpeed);
+
+		// 부드럽게 이동
+		transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * smoothness);
+	}
+
+	// 마우스 회전
+	void MouseRot()
     {
         xRot = Mathf.Clamp(xRot, -90f, 90f);
         Camera.main.transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
