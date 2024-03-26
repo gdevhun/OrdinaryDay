@@ -8,6 +8,7 @@ TagManager:
   - LeftDoor
   - FadeInOutImage
   - MapTeleport
+  - FirstDoor
   layers:
   - Default
   - TransparentFX
