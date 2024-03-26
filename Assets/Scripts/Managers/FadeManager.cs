@@ -36,7 +36,7 @@ public class FadeManager : MonoBehaviour
     float time = 0f;
 
     // 진행시간 계산용
-    float timeCalc = 2f;
+    float timeCalc = 1f;
 
     // 페이드 인/아웃 코루틴 실행
     public void Fade()
@@ -63,7 +63,7 @@ public class FadeManager : MonoBehaviour
         fadeInOutImage.GetComponent<Image>().color = alpha;
 
         // 1초동안 알파값 최대 유지(흑색)
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
 
         // 페이드 아웃
         // 알파값이 0 초과일때
