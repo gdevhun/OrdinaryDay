@@ -32,6 +32,12 @@ public class PlayerStep : MonoBehaviour
  
 	private void SFXStep()
     {
+        // 페이드 체크
+        if(player.isFade)
+        {
+            return;
+        }
+
 		// 플레이어가 걷는 상태일 때
 		playerWalkSound.SetActive(player.isWalk);
 
