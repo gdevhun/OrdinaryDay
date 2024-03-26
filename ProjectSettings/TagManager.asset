@@ -8,11 +8,12 @@ TagManager:
   - LeftDoor
   - FadeInOutImage
   - MapTeleport
+  - FirstDoor
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Wall
   - Water
   - UI
   - 

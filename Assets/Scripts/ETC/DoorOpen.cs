@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.iOS.Xcode;
 using UnityEngine;
 
 public class DoorOpen : MonoBehaviour
@@ -69,7 +70,10 @@ public class DoorOpen : MonoBehaviour
                     {
                         targetRotation *= Quaternion.Euler(0, 0, -90f);
                     }
-
+                    else if (gameObject.CompareTag("FirstDoor"))
+                    {
+						targetRotation *= Quaternion.Euler(0, 0, 90f);
+					}
                     // 플래그
                     isOpen = true;
 

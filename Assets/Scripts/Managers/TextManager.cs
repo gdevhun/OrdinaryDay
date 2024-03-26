@@ -11,8 +11,7 @@ public class TextManager : MonoBehaviour
 	public GameObject talkTextUI; 
 	public TextMeshProUGUI talkText; 
 	private WaitForSeconds textDelay;
-	private readonly string str1 = "항상 새벽 경비 근무는 피곤하군..";
-	private readonly string str2 = "오늘 해야할 일은 PETER가 알려준 3가지가 있어.";
+	private string tempText;
 
 	public bool isOverTextRoutine = false; //텍스트출력이 되고있는지의 bool변수
 
@@ -35,7 +34,7 @@ public class TextManager : MonoBehaviour
 	void Start()
 	{
 		talkTextUI.SetActive(false); //텍스트는 초기에 비활성화.
-		textDelay = new WaitForSeconds(0.3f); //text 출력 딜레이는 0.3초
+		textDelay = new WaitForSeconds(0.1f); //text 출력 딜레이는 0.1초
 	}
 	private void Update()
 	{
@@ -56,16 +55,17 @@ public class TextManager : MonoBehaviour
 	public void DisplayTextInstantly()  //엔터누르면실행->즉시 텍스트 출력 함수
 	{
 		StopAllCoroutines(); // 모든코루틴중지하고
-		talkText.text = str1; //텍스트 바로출력
+		talkText.text = tempText; //텍스트 바로출력
 		isOverTextRoutine = true;
 	}
 	IEnumerator DisplayText(string message) // 텍스트출력 코루틴
 	{
+		tempText = message;
 		talkText.text = ""; //텍스트 초기화(비워주고)
 		for (int i = 0; i < message.Length; i++)
 		{
 			talkText.text += message[i];
-			yield return textDelay; //0.3f에 맞춰 텍스트 출력
+			yield return textDelay; //0.1f에 맞춰 텍스트 출력
 		}
 		isOverTextRoutine = true; //다출력됨.
 	}

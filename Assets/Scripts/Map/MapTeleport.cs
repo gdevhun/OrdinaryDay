@@ -16,6 +16,9 @@ public class MapTeleport : MonoBehaviour
     // 플레이어
     public GameObject player;
 
+    // 퍼스트 플레이어
+    public FirstPlayer firstPlayer;
+
     // 맵 텔레포트
     public void Teleport()
     {
@@ -28,25 +31,27 @@ public class MapTeleport : MonoBehaviour
         // 이동할 맵 활성화
         activeMap.SetActive(true);
 
-        // 플레이어 위치 이동
+        // 플레이어 위치
         player.transform.position = mapTeleportPos.transform.position;
 
-        // 페이드 인/아웃
+        // 플레이어 회전
+        player.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
+
+        // 페이드 인/아웃, 플레이어 못 움직임, 문 여는소리
         FadeManager.Instance.Fade();
-        
-        // 문여는소리
+        firstPlayer.isFade = true;
         PoolManager.instance.GetObj(ObjType.문여는소리);
 
-        // 1초 후에
+        // 1초 후에 문 닫는소리
          yield return new WaitForSeconds(1f);
-
-        // 문닫는소리
         PoolManager.instance.GetObj(ObjType.문닫는소리);
 
-        // 3초 후에
-        yield return new WaitForSeconds(3.0f);
+        // 1초 후에 움직일수있음
+         yield return new WaitForSeconds(1.5f);
+        firstPlayer.isFade = false;
 
-        //이전 맵 비활성화
+        // 3초 후에
+        yield return new WaitForSeconds(0.5f);
         deActiveMap.SetActive(false);
     }
 }
