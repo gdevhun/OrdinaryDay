@@ -32,8 +32,6 @@ public class QuestManager : MonoBehaviour
 		LoadSelectedStage();
 	}
 
-
-
 	private void LoadSelectedStage()
 	{
 		questData = Resources.Load<QuestData>(selectedQuestName);
