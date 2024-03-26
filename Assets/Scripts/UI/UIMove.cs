@@ -6,8 +6,8 @@ public class UImove : MonoBehaviour
 {
 	public Image uiImage;
 	public float moveSpeed = 10f;
-	private readonly float minY = -360f;
-	private readonly float maxY = -330f;
+	private readonly float minY = 50f;
+	private readonly float maxY = 70f;
 
 	void Update()
 	{
