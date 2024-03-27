@@ -19,7 +19,7 @@ public class Trash : InteractionBase
         {
             if(!isInter)
             {
-                interactionText.text = "E키로 쓰레기를 들어보자";
+                interactionText.text = "E키로 쓰레기와 상호작용이 가능하다";
             }
         }
     }

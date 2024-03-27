@@ -19,7 +19,7 @@ public class Door : InteractionBase
         {
             if(!isInter)
             {
-                interactionText.text = "E키로 문을 열어보자";
+                interactionText.text = "E키로 문과 상호작용이 가능하다.";
             }
         }
     }
