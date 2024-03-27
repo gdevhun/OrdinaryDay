@@ -12,6 +12,7 @@ TagManager:
   - InteractionPanel
   - FirstThing
   - PlayerHand
+  - Trash
   layers:
   - Default
   - TransparentFX

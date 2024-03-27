@@ -15,7 +15,7 @@ public class Trash : InteractionBase
 
         // 튜토리얼물건
         // 상호작용 텍스트
-        if(gameObject.CompareTag("FirstThing"))
+        if(isNear && gameObject.CompareTag("Trash"))
         {
             if(!isInter)
             {
@@ -31,7 +31,7 @@ public class Trash : InteractionBase
 
         // 튜토리얼물건
         // 상호작용 텍스트
-        if(gameObject.CompareTag("FirstThing"))
+        if(gameObject.CompareTag("Trash"))
         {
             interactionText.text = "";
         }
