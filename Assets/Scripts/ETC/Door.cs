@@ -97,7 +97,7 @@ public class Door : InteractionBase
             isInter = true;
 
             // 문여는소리
-            PoolManager.instance.GetObj(ObjType.문여는소리);
+            SoundManager.instance.SFXPlay(SfxType.OpenDoor);
         }
     }
 
@@ -121,6 +121,6 @@ public class Door : InteractionBase
         isInter = false;
 
         // 문닫는소리
-        PoolManager.instance.GetObj(ObjType.문닫는소리);
+        SoundManager.instance.SFXPlay(SfxType.CloseDoor);
     }
 }

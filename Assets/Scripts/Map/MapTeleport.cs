@@ -48,11 +48,11 @@ public class MapTeleport : MonoBehaviour
         // 페이드 인/아웃, 플레이어 못 움직임, 문 여는소리
         FadeManager.Instance.Fade();
         firstPlayer.isFade = true;
-        PoolManager.instance.GetObj(ObjType.문여는소리);
+        SoundManager.instance.SFXPlay(SfxType.OpenDoor);
 
         // 1초 후에 문 닫는소리
-         yield return new WaitForSeconds(1f);
-        PoolManager.instance.GetObj(ObjType.문닫는소리);
+        yield return new WaitForSeconds(1f);
+        SoundManager.instance.SFXPlay(SfxType.CloseDoor);
 
         // 1초 후에 움직일수있음
          yield return new WaitForSeconds(1.5f);
