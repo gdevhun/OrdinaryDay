@@ -19,6 +19,9 @@ public class MapTeleport : MonoBehaviour
     // 퍼스트 플레이어
     public FirstPlayer firstPlayer;
 
+    //플레이어 스텝
+    public PlayerStep playerStep;
+
     // 맵 텔레포트
     public void Teleport()
     {
@@ -36,6 +39,11 @@ public class MapTeleport : MonoBehaviour
 
         // 플레이어 회전
         player.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
+
+        // 플레이어 스텝 비활성화
+        playerStep.playerRunSound.SetActive(false);
+        playerStep.playerWalkSound.SetActive(false);
+        playerStep.playerRunBreathSound.SetActive(false);
 
         // 페이드 인/아웃, 플레이어 못 움직임, 문 여는소리
         FadeManager.Instance.Fade();

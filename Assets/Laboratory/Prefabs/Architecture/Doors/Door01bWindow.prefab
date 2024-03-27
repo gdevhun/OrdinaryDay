@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1536593217732980423}
   - component: {fileID: 5075444667038061118}
   - component: {fileID: 272145440937396315}
-  - component: {fileID: -3310167838100565341}
   - component: {fileID: 9207864526474946727}
+  - component: {fileID: 4855381540289626759}
   m_Layer: 0
   m_Name: Door01bWindow
   m_TagString: LeftDoor
@@ -111,20 +111,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.9, y: 2, z: 2.1000004}
   m_Center: {x: 0.45, y: 0.024999728, z: 1.0500002}
---- !u!114 &-3310167838100565341
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6796859843004491490}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f5f188a4813d784d9ef98384fc0ac31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isOpen: 0
-  targetRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!65 &9207864526474946727
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -146,3 +132,15 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.9, y: 0.16399497, z: 2.1000004}
   m_Center: {x: 0.45, y: 0.025000308, z: 1.0500002}
+--- !u!114 &4855381540289626759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6796859843004491490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2e31a160ebe52a40b4d1a027d44bb8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
