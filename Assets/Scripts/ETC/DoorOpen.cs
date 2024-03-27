@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 public class DoorOpen : MonoBehaviour
@@ -9,7 +10,7 @@ public class DoorOpen : MonoBehaviour
 
     // 문이 열린 상태인지 체크
     public bool isOpen = false;
-
+    
     // 목표 회전 각도
     public Quaternion targetRotation;
 
@@ -65,7 +66,7 @@ public class DoorOpen : MonoBehaviour
                 Close();
             }
         }
-
+        
         // 문 서서히 열리거나 닫힘
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
     }
@@ -100,7 +101,7 @@ public class DoorOpen : MonoBehaviour
             PoolManager.instance.GetObj(ObjType.문여는소리);
         }
     }
-
+    
     // 문 닫기
     void Close()
     {

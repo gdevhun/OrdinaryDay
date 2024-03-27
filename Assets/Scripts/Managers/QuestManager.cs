@@ -40,7 +40,6 @@ public class QuestManager : MonoBehaviour
 		{
 			// 로드 성공
 			Debug.Log("QuestData loaded successfully.");
-			Debug.Log(questData.talkText1);
 		}
 		else
 		{

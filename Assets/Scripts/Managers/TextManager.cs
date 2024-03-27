@@ -40,11 +40,11 @@ public class TextManager : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.Alpha1))
 		{
-			DisplayTextSlowly(QuestManager.instance.questData.talkText1);
+			DisplayTextSlowly(QuestManager.instance.questData.talkText[0]);
 		}
 		else if (Input.GetKeyDown(KeyCode.Alpha2))
 		{
-			DisplayTextSlowly(QuestManager.instance.questData.talkText2);
+			DisplayTextSlowly(QuestManager.instance.questData.talkText[1]);
 		}
 	}
 	public void DisplayTextSlowly(string text) //기본적인 텍스트 출력함수
