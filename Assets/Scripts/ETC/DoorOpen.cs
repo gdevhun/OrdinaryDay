@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
 
 public class DoorOpen : MonoBehaviour
@@ -10,7 +9,7 @@ public class DoorOpen : MonoBehaviour
 
     // 문이 열린 상태인지 체크
     public bool isOpen = false;
-    
+
     // 목표 회전 각도
     public Quaternion targetRotation;
 
