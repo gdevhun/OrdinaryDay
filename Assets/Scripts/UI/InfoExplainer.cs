@@ -23,6 +23,8 @@ public class InfoExplainer : MonoBehaviour
 	private bool isInfoText1Over=false;
 	private bool isInfoText2Over = false;
 
+	public GameObject TextEventObject;
+
 	private WaitForSeconds activeSec = new(2.5f);
 	public GameObject InteractionPanel;
     public TextMeshProUGUI textGuide;

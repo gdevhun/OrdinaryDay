@@ -18,7 +18,8 @@ public class FirstPlayer : MonoBehaviour
     // 마우스 회전 관련
     public float mouseSensitivity = 100f; // 마우스 감도
     private float xRot = 0f; // x축 회전값
-    private float mouseX; // 마우스 회전 축값
+    private float mouseX; // 마우스 좌우 축값
+    private float mouseY; // 마우스 상하 축값
 
 	void Awake()
     {
@@ -34,8 +35,8 @@ public class FirstPlayer : MonoBehaviour
         // 플레이어 이동
         Move();
 
-        // 마우스 회전
-        MouseRot();
+        // 플레이어 회전
+        Rot();
     }
 
     // 입력
@@ -47,8 +48,9 @@ public class FirstPlayer : MonoBehaviour
         isRun = Input.GetKey(KeyCode.LeftShift) && (hAxis != 0 || vAxis != 0); // shift 누른상태에서 이동중이면 뛰는상태 
         isWalk = !isRun && (hAxis != 0 || vAxis != 0); // 뛰는중이 아닌데 이동중이면 걷는상태
 
-        // 마우스 회전
+        // 플레이어 회전
         mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+        mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
     }
 
     // 플레이어 이동
@@ -58,6 +60,30 @@ public class FirstPlayer : MonoBehaviour
         moveDir = (Camera.main.transform.forward * vAxis + Camera.main.transform.right * hAxis).normalized;
 
         // 벽 체크
+        if(WallCheck()) return;
+
+        // 페이드 체크
+        if(isFade) return;
+
+        // 플레이어 이동
+        transform.position += isRun ? moveDir * runSpeed * Time.deltaTime : moveDir * walkSpeed * Time.deltaTime;
+    }
+
+	// 플레이어 회전
+	void Rot()
+    {
+        // 페이드 체크
+        if(isFade) return;
+
+        xRot -= mouseY;
+        xRot = Mathf.Clamp(xRot, -90f, 90f);
+        Camera.main.transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
+        transform.Rotate(Vector3.up * mouseX);
+    }
+
+    // 벽 체크
+    bool WallCheck()
+    {
         Vector3 rayStart = transform.position + Vector3.up * 0.5f; // 레이 시작지점
 
         RaycastHit hit; // 레이 충돌정보
@@ -67,35 +93,12 @@ public class FirstPlayer : MonoBehaviour
             // 레이 디버깅용
             Debug.DrawRay(rayStart, moveDir * hit.distance, Color.red);
 
-            return;
-        }
-        else
-        {
-            // 레이 디버깅용
-            Debug.DrawRay(rayStart, moveDir * 1.3f, Color.green);
+            return true;
         }
 
-        // 페이드 체크
-        if(isFade)
-        {
-            return;
-        }
+        // 레이 디버깅용
+        Debug.DrawRay(rayStart, moveDir * 1.3f, Color.green);
 
-        // 플레이어 이동
-        transform.position += isRun ? moveDir * runSpeed * Time.deltaTime : moveDir * walkSpeed * Time.deltaTime;
-    }
-
-	// 마우스 회전
-	void MouseRot()
-    {
-        // 페이드 체크
-        if(isFade)
-        {
-            return;
-        }
-
-        xRot = Mathf.Clamp(xRot, -90f, 90f);
-        Camera.main.transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
-        transform.Rotate(Vector3.up * mouseX);
+        return false;
     }
 }

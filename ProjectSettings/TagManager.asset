@@ -9,6 +9,10 @@ TagManager:
   - FadeInOutImage
   - MapTeleport
   - FirstDoor
+  - InteractionPanel
+  - FirstThing
+  - PlayerHand
+  - Trash
   layers:
   - Default
   - TransparentFX
