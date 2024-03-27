@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.iOS.Xcode;
 using UnityEngine;
 
 public class DoorOpen : MonoBehaviour
@@ -47,60 +46,77 @@ public class DoorOpen : MonoBehaviour
         }
     }
 
-    // 플레이어가 근처에 있는경우
-    // E를 눌러서 문을 열고 닫음
+    // 문 열고 닫기
     void Update()
     {
-        if (isNear && Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
+            if(!isNear)
+            {
+                return;
+            }
+
             if (!isOpen) // 닫힌상태였으면 열음
             {
-                // 맵을 이동하는 문이면 맵 텔레포트
-                if (gameObject.tag.Equals("MapTeleport"))
-                {
-                    mapTeleport.Teleport();
-                }
-                else
-                {
-                    if(gameObject.tag.Equals("LeftDoor")) // 왼쪽문
-                    {
-                        targetRotation *= Quaternion.Euler(0, 0, 90f);
-                    }
-                    else if(gameObject.tag.Equals("RightDoor")) // 오른쪽문
-                    {
-                        targetRotation *= Quaternion.Euler(0, 0, -90f);
-                    }
-                    else if (gameObject.CompareTag("FirstDoor"))
-                    {
-						targetRotation *= Quaternion.Euler(0, 0, 90f);
-					}
-                    // 플래그
-                    isOpen = true;
-
-                    // 문여는소리
-                    PoolManager.instance.GetObj(ObjType.문여는소리);
-                }
+                Open();
             }
             else // 열린 상태였으면 닫음
             {
-                if(gameObject.tag.Equals("LeftDoor")) // 왼쪽문
-                {
-                    targetRotation *= Quaternion.Euler(0, 0, -90f);
-                }
-                else if(gameObject.tag.Equals("RightDoor")) // 오른쪽문
-                {
-                    targetRotation *= Quaternion.Euler(0, 0, 90f);
-                }
-
-                // 플래그
-                isOpen = false;
-
-                // 문닫는소리
-                PoolManager.instance.GetObj(ObjType.문닫는소리);
+                Close();
             }
         }
 
         // 문 서서히 열리거나 닫힘
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+    }
+
+    // 문 열기
+    void Open()
+    {
+        // 맵을 이동하는 문이면 맵 텔레포트
+        if (gameObject.tag.Equals("MapTeleport"))
+        {
+            mapTeleport.Teleport();
+        }
+        else
+        {
+            if(gameObject.tag.Equals("LeftDoor")) // 왼쪽문
+            {
+                targetRotation *= Quaternion.Euler(0, 0, 90f);
+            }
+            else if(gameObject.tag.Equals("RightDoor")) // 오른쪽문
+            {
+                targetRotation *= Quaternion.Euler(0, 0, -90f);
+            }
+            else if(gameObject.tag.Equals("FirstDoor"))
+            {
+                targetRotation *= Quaternion.Euler(0, 0, 90f);
+            }
+
+            // 플래그
+            isOpen = true;
+
+            // 문여는소리
+            PoolManager.instance.GetObj(ObjType.문여는소리);
+        }
+    }
+
+    // 문 닫기
+    void Close()
+    {
+        if(gameObject.tag.Equals("LeftDoor")) // 왼쪽문
+        {
+            targetRotation *= Quaternion.Euler(0, 0, -90f);
+        }
+        else if(gameObject.tag.Equals("RightDoor")) // 오른쪽문
+        {
+            targetRotation *= Quaternion.Euler(0, 0, 90f);
+        }
+
+        // 플래그
+        isOpen = false;
+
+        // 문닫는소리
+        PoolManager.instance.GetObj(ObjType.문닫는소리);
     }
 }
