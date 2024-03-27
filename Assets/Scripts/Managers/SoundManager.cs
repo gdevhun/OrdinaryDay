@@ -15,7 +15,9 @@ public enum BgmType
 public enum SfxType
 {
     OpenDoor,
-    CloseDoor
+    CloseDoor,
+    PickUpThing,
+    DropThing
 }
 
 public class SoundManager : MonoBehaviour
@@ -50,12 +52,10 @@ public class SoundManager : MonoBehaviour
     }
 
     public AudioSource bgmSound; // 배경음 오디오
-    public AudioClip[] bgmList; // 배경음 리스트
-    public AudioClip[] sfxList; // 효과음 리스트
+    public AudioClip[] bgmList, sfxList; // 배경음 및 효과음 리스트
     public Dictionary<BgmType, AudioClip> mapBgm = new Dictionary<BgmType, AudioClip>(); // (타입, 배경음) 맵핑
     public Dictionary<SfxType, AudioClip> mapSfx = new Dictionary<SfxType, AudioClip>(); // (타입, 효과음) 맵핑
-    private float bgmVolume; // 배경음 볼륨값 저장
-    private float sfxVolume; // 효과음 볼륨값 저장
+    private float bgmVolume, sfxVolume; // 배경음 볼륨 및 효과음 볼륨
     
     // 배경음 및 효과음 맵핑
     private void Map()
@@ -68,6 +68,8 @@ public class SoundManager : MonoBehaviour
         // (타입, 효과음) 맵핑
         mapSfx.Add(SfxType.OpenDoor, sfxList[0]);
         mapSfx.Add(SfxType.CloseDoor, sfxList[1]);
+        mapSfx.Add(SfxType.PickUpThing, sfxList[2]);
+        mapSfx.Add(SfxType.DropThing, sfxList[3]);
     }
 
     // 배경음

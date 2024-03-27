@@ -7,36 +7,19 @@ public class Door : InteractionBase
     private Quaternion targetRotation; // 목표 회전 각도
     private float rotationSpeed = 2f; // 문이 열리거나 닫히는 속도
     private MapTeleport mapTeleport; // 맵 이동
+    private string tag; // 태그
 
     // 플레이어가 근처에 있음
     public override void OnTriggerEnter(Collider other)
     {
-        base.OnTriggerEnter(other);
-
-        // 튜토리얼문
-        // 상호작용 텍스트
-        if(gameObject.CompareTag("FirstDoor"))
+        if (other.CompareTag("Player"))
         {
-            if(!isInter)
-            {
-                interactionText.text = "E키로 문과 상호작용이 가능하다.";
-            }
+            isNear = true;
+            interactionText.text = "E키로 문과 상호작용이 가능하다.";
         }
     }
 
-    // 플레이어가 근처에 없음
-    public override void OnTriggerExit(Collider other)
-    {
-        base.OnTriggerExit(other);
-
-        // 튜토리얼문
-        // 상호작용 텍스트
-        if(gameObject.CompareTag("FirstDoor"))
-        {
-            interactionText.text = "";
-        }
-    }
-
+    // 초기화
     protected override void Awake()
     {
         base.Awake();
@@ -46,6 +29,9 @@ public class Door : InteractionBase
 
         // 맵 이동
         mapTeleport = GetComponent<MapTeleport>();
+
+        // 태그
+        tag = gameObject.tag;
     }
 
     // 상호작용 실행
@@ -63,58 +49,61 @@ public class Door : InteractionBase
         if (!isInter) // 닫힌상태였으면 열음
         {
             Open();
+
+            return;
         }
-        else // 열린 상태였으면 닫음
-        {
-            Close();
-        }
+
+        // 열린 상태였으면 닫음
+        Close();
     }
 
     // 문 열기
     private void Open()
     {
-        // 맵을 이동하는 문이면 맵 텔레포트
-        if (gameObject.CompareTag("MapTeleport"))
+        // 맵 이동 문
+        if (tag == "MapTeleport")
         {
             mapTeleport.Teleport();
+
+            return;
         }
-        else
-        {
-            if(gameObject.CompareTag("LeftDoor")) // 왼쪽문
-            {
+
+        switch (tag)
+        {   
+            // 왼쪽문 및 튜토리얼 문
+            case "LeftDoor":
+            case "FirstDoor":
                 targetRotation *= Quaternion.Euler(0, 0, 90f);
-            }
-            else if(gameObject.CompareTag("RightDoor")) // 오른쪽문
-            {
+                break;
+            
+            // 오른쪽 문
+            case "RightDoor":
                 targetRotation *= Quaternion.Euler(0, 0, -90f);
-            }
-            else if(gameObject.CompareTag("FirstDoor")) // 튜토리얼문
-            {
-                targetRotation *= Quaternion.Euler(0, 0, 90f);
-            }
-
-            // 플래그
-            isInter = true;
-
-            // 문여는소리
-            SoundManager.instance.SFXPlay(SfxType.OpenDoor);
+                break;
         }
+
+        // 플래그
+        isInter = true;
+
+        // 문여는소리
+        SoundManager.instance.SFXPlay(SfxType.OpenDoor);
     }
 
     // 문 닫기
     private void Close()
     {
-        if(gameObject.CompareTag("LeftDoor")) // 왼쪽문
+        switch (tag)
         {
-            targetRotation *= Quaternion.Euler(0, 0, -90f);
-        }
-        else if(gameObject.CompareTag("RightDoor")) // 오른쪽문
-        {
-            targetRotation *= Quaternion.Euler(0, 0, 90f);
-        }
-        else if(gameObject.CompareTag("FirstDoor")) // 튜토리얼문
-        {
-            targetRotation *= Quaternion.Euler(0, 0, -90f);
+            // 왼쪽문 및 튜토리얼 문
+            case "LeftDoor":
+            case "FirstDoor":
+                targetRotation *= Quaternion.Euler(0, 0, -90f);
+                break;
+            
+            // 오른쪽 문
+            case "RightDoor":
+                targetRotation *= Quaternion.Euler(0, 0, 90f);
+                break;
         }
 
         // 플래그
