@@ -9,6 +9,7 @@
 | ------ | ---------- | ------ |
 | 원동훈 | PM, Developer | PM, 기획, 개발 |
 | 이중휘 | Developer | 개발 |
+| 김유림 | Developer | 개발 |
 
 
 <br/>
