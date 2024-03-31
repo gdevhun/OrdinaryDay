@@ -28,6 +28,7 @@ public abstract class InteractionBase : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isNear = false;
+            interactionText.text = "";
         }
     }
 

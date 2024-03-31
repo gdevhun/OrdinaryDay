@@ -11,6 +11,15 @@ public enum BgmType
     Woods
 }
 
+// 재생할 효과음 타입 -> 키로 사용
+public enum SfxType
+{
+    OpenDoor,
+    CloseDoor,
+    PickUpThing,
+    DropThing
+}
+
 public class SoundManager : MonoBehaviour
 {
     // 싱글톤
@@ -41,38 +50,26 @@ public class SoundManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
-    private void Update()
-    {
-        // 배경음 테스트
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            BgmSoundPlay(BgmType.Curious);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            BgmSoundPlay(BgmType.DarkHouse);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            BgmSoundPlay(BgmType.Woods);
-        }
-    }
 
     public AudioSource bgmSound; // 배경음 오디오
-    public AudioClip[] bgmList; // 배경음악 리스트
+    public AudioClip[] bgmList, sfxList; // 배경음 및 효과음 리스트
     public Dictionary<BgmType, AudioClip> mapBgm = new Dictionary<BgmType, AudioClip>(); // (타입, 배경음) 맵핑
-    private float bgmVolume; // 배경음 볼륨값 저장
-    private float sfxVolume; // 효과음 볼륨값 저장
+    public Dictionary<SfxType, AudioClip> mapSfx = new Dictionary<SfxType, AudioClip>(); // (타입, 효과음) 맵핑
+    private float bgmVolume, sfxVolume; // 배경음 볼륨 및 효과음 볼륨
     
-    // (타입, 배경음) 맵핑
+    // 배경음 및 효과음 맵핑
     private void Map()
     {
+        // (타입, 배경음) 맵핑
         mapBgm.Add(BgmType.Curious, bgmList[0]);
         mapBgm.Add(BgmType.DarkHouse, bgmList[1]);
         mapBgm.Add(BgmType.Woods, bgmList[2]);
+
+        // (타입, 효과음) 맵핑
+        mapSfx.Add(SfxType.OpenDoor, sfxList[0]);
+        mapSfx.Add(SfxType.CloseDoor, sfxList[1]);
+        mapSfx.Add(SfxType.PickUpThing, sfxList[2]);
+        mapSfx.Add(SfxType.DropThing, sfxList[3]);
     }
 
     // 배경음
@@ -95,13 +92,13 @@ public class SoundManager : MonoBehaviour
     }
 
     // 효과음
-    public void SFXPlay(ObjType type)
+    public void SFXPlay(SfxType type)
     {
-        // 사운드 풀링
-        GameObject instantSfx = PoolManager.instance.GetObj(type);
-
-        // 음원 볼륨
-        instantSfx.GetComponent<AudioSource>().volume = sfxVolume;
+        // 맵핑된 효과음 재생
+        if (mapSfx.TryGetValue(type, out AudioClip clip))
+        {
+            AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position, sfxVolume);
+        }
     }
 
     // 배경음 볼륨 조절
