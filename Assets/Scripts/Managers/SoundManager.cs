@@ -55,7 +55,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip[] bgmList, sfxList; // 배경음 및 효과음 리스트
     public Dictionary<BgmType, AudioClip> mapBgm = new Dictionary<BgmType, AudioClip>(); // (타입, 배경음) 맵핑
     public Dictionary<SfxType, AudioClip> mapSfx = new Dictionary<SfxType, AudioClip>(); // (타입, 효과음) 맵핑
-    private float bgmVolume, sfxVolume; // 배경음 볼륨 및 효과음 볼륨
+    public float bgmVolume, sfxVolume; // 배경음 볼륨 및 효과음 볼륨
     
     // 배경음 및 효과음 맵핑
     private void Map()
