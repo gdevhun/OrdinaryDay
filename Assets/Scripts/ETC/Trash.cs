@@ -78,7 +78,7 @@ public class Trash : InteractionBase
         isInter = true;
 
         // 쓰레기 줍는소리
-        SoundManager.instance.SFXPlay(SfxType.PickUpThing);
+        SoundManager.Instance.SFXPlay(SfxType.PickUpThing);
     }
 
     // 쓰레기 놓기
@@ -97,7 +97,7 @@ public class Trash : InteractionBase
         isInter = false;
 
         // 쓰레기 놓는소리
-        SoundManager.instance.SFXPlay(SfxType.DropThing);
+        SoundManager.Instance.SFXPlay(SfxType.DropThing);
         
         // 상호작용 텍스트 지우기
         interactionText.text = "";

@@ -2,24 +2,9 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-public class QuestManager : MonoBehaviour
+public class QuestManager : Singleton<QuestManager>
 {
-	public static QuestManager instance;
-	private void Awake()
-	{
-		if (instance == null)
-		{
-			// 텍스트 메니저 싱글톤
-			instance = this;
-			// 파괴X
-			DontDestroyOnLoad(instance);
-		}
-		else
-		{
-			// 에외처리
-			Destroy(gameObject);
-		}
-	}
+	
 	private string selectedQuestName;
 	public QuestData questData;
 	void Start()

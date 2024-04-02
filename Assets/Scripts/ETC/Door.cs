@@ -86,7 +86,7 @@ public class Door : InteractionBase
         isInter = true;
 
         // 문여는소리
-        SoundManager.instance.SFXPlay(SfxType.OpenDoor);
+        SoundManager.Instance.SFXPlay(SfxType.OpenDoor);
     }
 
     // 문 닫기
@@ -110,6 +110,6 @@ public class Door : InteractionBase
         isInter = false;
 
         // 문닫는소리
-        SoundManager.instance.SFXPlay(SfxType.CloseDoor);
+        SoundManager.Instance.SFXPlay(SfxType.CloseDoor);
     }
 }

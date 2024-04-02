@@ -4,10 +4,9 @@ using UnityEngine;
 using TMPro;
 using System.Text; // StringBuilder를 사용하기 위한 네임스페이스 추가
 
-public class TextManager : MonoBehaviour
+public class TextManager : Singleton<TextManager>
 {
-	public static TextManager instance; 
-
+	
 	public GameObject talkTextUI; 
 	public TextMeshProUGUI talkText; 
 	private WaitForSeconds textDelay;
@@ -16,22 +15,6 @@ public class TextManager : MonoBehaviour
 
 	public bool isOverTextRoutine = false; //텍스트출력이 되고있는지의 bool변수
 
-
-	private void Awake()
-	{
-		if (instance == null)
-		{
-			// 텍스트 메니저 싱글톤
-			instance = this;
-			// 파괴X
-			DontDestroyOnLoad(instance);
-		}
-		else
-		{
-			// 에외처리
-			Destroy(gameObject);
-		}
-	}
 	void Start()
 	{
 		talkTextUI.SetActive(false); //텍스트는 초기에 비활성화.
@@ -42,11 +25,11 @@ public class TextManager : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.Alpha1))
 		{
-			DisplayTextSlowly(QuestManager.instance.questData.talkText[0]);
+			DisplayTextSlowly(QuestManager.Instance.questData.talkText[0]);
 		}
 		else if (Input.GetKeyDown(KeyCode.Alpha2))
 		{
-			DisplayTextSlowly(QuestManager.instance.questData.talkText[1]);
+			DisplayTextSlowly(QuestManager.Instance.questData.talkText[1]);
 		}
 	}
 	public void DisplayTextSlowly(string text) //기본적인 텍스트 출력함수
