@@ -14,7 +14,7 @@ public class Trash : InteractionBase
         if (other.CompareTag("Player"))
         {
             isNear = true;
-            interactionText.text = "E키로 쓰레기와 상호작용이 가능하다.";
+            interactionText.text = "R키로 쓰레기와 상호작용이 가능하다.";
         }
     }
 
@@ -31,6 +31,17 @@ public class Trash : InteractionBase
 
         // 콜라이더
         meshCollider = GetComponent<MeshCollider>();
+    }
+
+    // 상호작용 실행
+    protected override void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if(!isNear) return;
+
+            Interaction();
+        }
     }
 
     // 상호작용

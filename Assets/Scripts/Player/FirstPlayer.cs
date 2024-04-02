@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public class FirstPlayer : MonoBehaviour
@@ -20,11 +21,15 @@ public class FirstPlayer : MonoBehaviour
     private float xRot = 0f; // x축 회전값
     private float mouseX; // 마우스 좌우 축값
     private float mouseY; // 마우스 상하 축값
+    CinemachineVirtualCamera playerCamera; // 플레이어 카메라
 
 	void Awake()
     {
         // 마우스 커서가 게임화면을 벗어나지않도록 잠금
         Cursor.lockState = CursorLockMode.Locked;
+
+        // 플레이어 카메라
+        playerCamera = GameObject.Find("PlayerCam").GetComponent<CinemachineVirtualCamera>();
     }
 
     void Update()
@@ -57,7 +62,7 @@ public class FirstPlayer : MonoBehaviour
     void Move()
     {
         // 카메라가 바라보는 방향으로 대각선 정규화
-        moveDir = (Camera.main.transform.forward * vAxis + Camera.main.transform.right * hAxis).normalized;
+        moveDir = (playerCamera.transform.forward * vAxis + playerCamera.transform.right * hAxis).normalized;
 
         // 벽 체크
         if(WallCheck()) return;
@@ -77,7 +82,7 @@ public class FirstPlayer : MonoBehaviour
 
         xRot -= mouseY;
         xRot = Mathf.Clamp(xRot, -90f, 90f);
-        Camera.main.transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
+        playerCamera.transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
         transform.Rotate(Vector3.up * mouseX);
     }
 
