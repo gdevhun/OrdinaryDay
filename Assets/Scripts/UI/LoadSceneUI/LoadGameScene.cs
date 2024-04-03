@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class LoadGameScene : MonoBehaviour
 {
+	WaitForSeconds waitsec=new WaitForSeconds(1.5f);
 	private void Start()
 	{
 		StartCoroutine(OnLoadGameScene());
@@ -19,15 +20,11 @@ public class LoadGameScene : MonoBehaviour
 		{
 			yield return null;
 
-			if (op.progress < 0.9f)
+			if (op.progress >= 0.9f)
 			{
-				
-			}
-			else
-			{
+				yield return waitsec;
 				op.allowSceneActivation = true;
 				yield break;
-				
 			}
 		}
 	}

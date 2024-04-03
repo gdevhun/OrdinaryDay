@@ -12,7 +12,7 @@ public class ProgessUI : MonoBehaviour
     [SerializeField]
     private RawImage _uiRawImage;
 
-    private void Start()
+    private void Awake()
     {
         LoadLoadingImg();
 		
