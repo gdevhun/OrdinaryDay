@@ -1,19 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Timeline;
 using UnityEngine.UI;
 
 // 페이드 인/아웃
-public class FadeManager : MonoBehaviour
+public class FadeManager : Singleton<FadeManager>
 {
-    // 싱글톤
-    private static FadeManager instance;
-    public static FadeManager Instance => instance;
-    public FadeManager()
-    {
-        instance = this;
-    }
-
     public void Awake()
     {
         // 페이드 인/아웃 이미지 할당

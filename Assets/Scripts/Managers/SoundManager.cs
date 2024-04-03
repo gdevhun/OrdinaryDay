@@ -3,59 +3,25 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-// 재생할 배경음 타입 -> 키로 사용
-public enum BgmType
+public class SoundManager : Singleton<SoundManager>
 {
-    Curious,
-    DarkHouse,
-    Woods
-}
-
-// 재생할 효과음 타입 -> 키로 사용
-public enum SfxType
-{
-    OpenDoor,
-    CloseDoor,
-    PickUpThing,
-    DropThing
-}
-
-public class SoundManager : MonoBehaviour
-{
-    // 싱글톤
-    public static SoundManager instance;
-    private void Awake()
+	public AudioSource bgmSound; // 배경음 오디오
+	public AudioClip[] bgmList, sfxList; // 배경음 및 효과음 리스트
+	public Dictionary<BgmType, AudioClip> mapBgm = new Dictionary<BgmType, AudioClip>(); // (타입, 배경음) 맵핑
+	public Dictionary<SfxType, AudioClip> mapSfx = new Dictionary<SfxType, AudioClip>(); // (타입, 효과음) 맵핑
+	public float bgmVolume, sfxVolume; // 배경음 볼륨 및 효과음 볼륨
+	private void Awake()
     {
-        if (instance == null)
-        {
-            // 사운드매니저 할당
-            instance = this;
+         // 볼륨 초기화
+         bgmVolume = 0.1f;
+         sfxVolume = 1f;
 
-            // 씬전환시 파괴되지 않게
-            DontDestroyOnLoad(instance);
+         // (타입, 배경음) 맵핑
+         Map();
 
-            // 볼륨 초기화
-            bgmVolume = 0.1f;
-            sfxVolume = 1f;
-
-            // (타입, 배경음) 맵핑
-            Map();
-
-            // 배경음 재생
-            BgmSoundPlay(BgmType.Curious);
-        }
-        else
-        {
-            // 씬전환시 이미 있으면 파괴
-            Destroy(gameObject);
-        }
+         // 배경음 재생
+         BgmSoundPlay(BgmType.Curious);
     }
-
-    public AudioSource bgmSound; // 배경음 오디오
-    public AudioClip[] bgmList, sfxList; // 배경음 및 효과음 리스트
-    public Dictionary<BgmType, AudioClip> mapBgm = new Dictionary<BgmType, AudioClip>(); // (타입, 배경음) 맵핑
-    public Dictionary<SfxType, AudioClip> mapSfx = new Dictionary<SfxType, AudioClip>(); // (타입, 효과음) 맵핑
-    public float bgmVolume, sfxVolume; // 배경음 볼륨 및 효과음 볼륨
     
     // 배경음 및 효과음 맵핑
     private void Map()
@@ -117,4 +83,21 @@ public class SoundManager : MonoBehaviour
         // 슬라이더 값을 변수에 저장해서 효과음을 실행할때마다 볼륨을 지정
         sfxVolume = volume;
     }
+}
+
+// 재생할 배경음 타입 -> 키로 사용
+public enum BgmType
+{
+	Curious,
+	DarkHouse,
+	Woods
+}
+
+// 재생할 효과음 타입 -> 키로 사용
+public enum SfxType
+{
+	OpenDoor,
+	CloseDoor,
+	PickUpThing,
+	DropThing
 }
