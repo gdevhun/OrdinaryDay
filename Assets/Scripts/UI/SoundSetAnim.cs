@@ -17,7 +17,7 @@ public class SoundSetAnim : MonoBehaviour
 		//최적화를 위해서 getcomponet 대신 tryget 이벤트호출러로 코드 작성
 		if (!TryGetComponent(out Slider slider))
 		{   
-			return;  //예오처리
+			return;  //예외처리
 		}
 
 		switch (slider.value)  //value값에 따른 이미지 변경

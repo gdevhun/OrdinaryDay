@@ -20,7 +20,7 @@ public class GameManager : Singleton<GameManager>
 	#region
 	public void StartGame()
 	{
-		SceneManager.LoadScene("GameScene");
+		SceneManager.LoadScene("LoadingScene");
 	}
 
 	// 사운드 옵션

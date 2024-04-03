@@ -15,12 +15,12 @@ public class ProgessUI : MonoBehaviour
     private void Start()
     {
         LoadLoadingImg();
-    }
+		
+	}
 
     // 원 이미지 로드
     public void LoadLoadingImg()
     {
-        Debug.Log("Loading Started");
         anim.SetBool("IsRotating", true);
     }
 }
