@@ -12,11 +12,18 @@ public class SoundSetAnim : MonoBehaviour
 		curImage.GetComponent<Image>().sprite = SoundImages[3];
 	}
 
-	public void OnSoundValueChanged()
+	public void OnSoundValueChanged(string str)
 	{
+		float coef = 1;
+
+		if(str.Equals("bgm"))  
+		{
+			coef = 10;
+		}
+
 		//최적화를 위해서 getcomponet 대신 tryget 이벤트호출러로 코드 작성
 		if (!TryGetComponent(out Slider slider))
-		{   
+		{
 			return;  //예외처리
 		}
 
@@ -25,16 +32,17 @@ public class SoundSetAnim : MonoBehaviour
 			case 0:
 				curImage.sprite = SoundImages[0];
 				break;
-			case float value when value > 0 && value < 0.25f:
+			case float value when value > 0 && value < (0.25f / coef):
 				curImage.sprite = SoundImages[1];
 				break;
-			case float value when value >= 0.25f && value < 0.5f:
+			case float value when value >= (0.25f / coef) && value < (0.5f / coef):
 				curImage.sprite = SoundImages[2];
 				break;
-			case 1:
+			case float value when value >= (0.9f / coef):
 				curImage.sprite = SoundImages[3];
 				break;
 		}
 
 	}
+	
 }
