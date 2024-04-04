@@ -7,30 +7,27 @@ using UnityEngine.UI;
 // 페이드 인/아웃
 public class FadeManager : Singleton<FadeManager>
 {
-    public void Awake()
+    WaitForSeconds fadeSec = new WaitForSeconds(2f);
+
+	// 페이드 인/아웃 이미지
+	public GameObject fadeInOutImage;
+
+	// 진행시간
+	float time = 0f;
+
+	// 진행시간 계산용
+	float timeCalc = 1f;
+
+	void Awake()
     {
-        // 페이드 인/아웃 이미지 할당
-        Invoke("SetFadeInOutImage", 0.5f);
-    }
+		fadeInOutImage.SetActive(false);
+	}
 
-    public void SetFadeInOutImage()
-    {
-        // 페이드 인/아웃 이미지 할당
-        fadeInOutImage = GameObject.FindGameObjectWithTag("FadeInOutImage");
-
-        // 페이드 인/아웃 이미지 비활성화
-        fadeInOutImage.SetActive(false);
-    }
-
-    // 페이드 인/아웃 이미지
-    private GameObject fadeInOutImage;
-
-    // 진행시간
-    float time = 0f;
-
-    // 진행시간 계산용
-    float timeCalc = 1f;
-
+	private void Start()
+	{
+        Fade(); //게임신 들어오면 자동 페이드
+	}
+	
     // 페이드 인/아웃 코루틴 실행
     public void Fade()
     {
@@ -56,7 +53,7 @@ public class FadeManager : Singleton<FadeManager>
         fadeInOutImage.GetComponent<Image>().color = alpha;
 
         // 1초동안 알파값 최대 유지(흑색)
-        yield return new WaitForSeconds(2f);
+        yield return fadeSec;
 
         // 페이드 아웃
         // 알파값이 0 초과일때
