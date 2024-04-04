@@ -17,6 +17,8 @@ public class ClipBoard : InteractionBase
     }
 
     // 플레이어가 근처에 없음
+    // 클립보드는 Exit 할때
+    // 확인한 상태일때만 내려놓음
     public override void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -25,8 +27,10 @@ public class ClipBoard : InteractionBase
             interactionText.text = "";
 
             // 클립보드 내려놓기
-            clipBoard.gameObject.SetActive(false);
-            isInter = false;
+            if(isInter)
+            {
+                PutBoard();
+            }
         }
     }
 
@@ -50,6 +54,8 @@ public class ClipBoard : InteractionBase
         clipBoard.gameObject.SetActive(true);
 
         isInter = true;
+
+        SoundManager.Instance.SFXPlay(SfxType.CheckClipBoard);
     }
 
     // 클립보드 내려놓기
@@ -58,5 +64,7 @@ public class ClipBoard : InteractionBase
         clipBoard.gameObject.SetActive(false);
 
         isInter = false;
+
+        SoundManager.Instance.SFXPlay(SfxType.PutClipBoard);
     }
 }

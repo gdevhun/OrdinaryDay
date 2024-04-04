@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -27,15 +28,16 @@ public class SoundManager : Singleton<SoundManager>
     private void Map()
     {
         // (타입, 배경음) 맵핑
-        mapBgm.Add(BgmType.Curious, bgmList[0]);
-        mapBgm.Add(BgmType.DarkHouse, bgmList[1]);
-        mapBgm.Add(BgmType.Woods, bgmList[2]);
+        for(int i = 0; i < bgmList.Length; i++)
+        {
+            mapBgm.Add((BgmType)i, bgmList[i]);
+        }
 
         // (타입, 효과음) 맵핑
-        mapSfx.Add(SfxType.OpenDoor, sfxList[0]);
-        mapSfx.Add(SfxType.CloseDoor, sfxList[1]);
-        mapSfx.Add(SfxType.PickUpThing, sfxList[2]);
-        mapSfx.Add(SfxType.DropThing, sfxList[3]);
+        for(int i = 0; i < sfxList.Length; i++)
+        {
+            mapSfx.Add((SfxType)i, sfxList[i]);
+        }
     }
 
     // 배경음
@@ -99,5 +101,7 @@ public enum SfxType
 	OpenDoor,
 	CloseDoor,
 	PickUpThing,
-	DropThing
+	DropThing,
+    CheckClipBoard,
+    PutClipBoard
 }
