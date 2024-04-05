@@ -1,25 +1,23 @@
-using System;
-using UnityEditor;
 using UnityEngine;
 
 public class QuestManager : Singleton<QuestManager>
 {
 	
-	private string selectedQuestName;
+	private string _selectedQuestName;
 	public QuestData questData;
 	void Start()
     {
 		OnActiveQuestNum("QuestData1");
     }
-	public void OnActiveQuestNum(string stageName)
+	private void OnActiveQuestNum(string stageName)
 	{   //퀘스트에셋 넘버 불러오기
-		selectedQuestName = stageName;
+		_selectedQuestName = stageName;
 		LoadSelectedStage();
 	}
 
 	private void LoadSelectedStage()
 	{
-		questData = Resources.Load<QuestData>(selectedQuestName);
+		questData = Resources.Load<QuestData>(_selectedQuestName);
 
 		if (questData != null)
 		{
