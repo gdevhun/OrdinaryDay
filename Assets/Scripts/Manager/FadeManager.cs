@@ -1,14 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Timeline;
 using UnityEngine.UI;
 
 // 페이드 인/아웃
 public class FadeManager : Singleton<FadeManager>
 {
-    WaitForSeconds fadeSec = new WaitForSeconds(2f);
-
 	// 페이드 인/아웃 이미지
 	public GameObject fadeInOutImage;
 
@@ -25,17 +22,17 @@ public class FadeManager : Singleton<FadeManager>
 
 	private void Start()
 	{
-        Fade(); //게임신 들어오면 자동 페이드
+        //Fade(); //게임신 들어오면 자동 페이드
 	}
 	
     // 페이드 인/아웃 코루틴 실행
     public void Fade()
     {
-        StartCoroutine(GoFadeInOut());
+        GoFadeInOut().Forget();
     }
 
     // 페이드 인/아웃 코루틴
-    IEnumerator GoFadeInOut()
+    private async UniTaskVoid GoFadeInOut()
     {
         // 페이드 인/아웃 이미지 활성화
         fadeInOutImage.gameObject.SetActive(true);
@@ -53,7 +50,7 @@ public class FadeManager : Singleton<FadeManager>
         fadeInOutImage.GetComponent<Image>().color = alpha;
 
         // 1초동안 알파값 최대 유지(흑색)
-        yield return fadeSec;
+        await UniTask.Delay(TimeSpan.FromSeconds(1));
 
         // 페이드 아웃
         // 알파값이 0 초과일때
@@ -68,12 +65,12 @@ public class FadeManager : Singleton<FadeManager>
             // 알파값 대입
             fadeInOutImage.GetComponent<Image>().color = alpha;
 
-            yield return null;
+            await UniTask.Yield();
         }
 
         // 페이드 인/아웃 이미지 비활성화
         fadeInOutImage.gameObject.SetActive(false);
 
-        yield return null;
+        await UniTask.Yield();
     }
 }
