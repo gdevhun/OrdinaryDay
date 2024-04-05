@@ -12,7 +12,7 @@ public class QuestManager : Singleton<QuestManager>
 		OnActiveQuestNum("QuestData1");
     }
 	public void OnActiveQuestNum(string stageName)
-	{   //Äù½ºÆ®¿¡¼Â ³Ñ¹ö ºÒ·¯¿À±â
+	{   //í€˜ìŠ¤íŠ¸ì—ì…‹ ë„˜ë²„ ë¶ˆëŸ¬ì˜¤ê¸°
 		selectedQuestName = stageName;
 		LoadSelectedStage();
 	}
@@ -23,12 +23,12 @@ public class QuestManager : Singleton<QuestManager>
 
 		if (questData != null)
 		{
-			// ·Îµå ¼º°ø
+			// ë¡œë“œ ì„±ê³µ
 			Debug.Log("QuestData loaded successfully.");
 		}
 		else
 		{
-			// ·Îµå ½ÇÆĞ
+			// ë¡œë“œ ì‹¤íŒ¨
 			Debug.LogError($"Failed to load QuestData for {selectedQuestName}.");
 		}
 	}

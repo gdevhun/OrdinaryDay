@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class LoadGameScene : MonoBehaviour
 {
-	WaitForSeconds waitsec=new WaitForSeconds(1.5f);
+	WaitForSeconds _waitsec=new WaitForSeconds(1.5f);
 	private void Start()
 	{
 		StartCoroutine(OnLoadGameScene());
@@ -12,7 +12,7 @@ public class LoadGameScene : MonoBehaviour
 	
 	IEnumerator OnLoadGameScene()
 	{
-		yield return null;
+		yield return null; 
 		AsyncOperation op = SceneManager.LoadSceneAsync("GameScene");
 		op.allowSceneActivation = false;
 
@@ -22,7 +22,7 @@ public class LoadGameScene : MonoBehaviour
 
 			if (op.progress >= 0.9f)
 			{
-				yield return waitsec;
+				yield return _waitsec;
 				op.allowSceneActivation = true;
 				yield break;
 			}
