@@ -27,7 +27,7 @@ public class QuestManager : Singleton<QuestManager>
 		else
 		{
 			// 로드 실패
-			Debug.LogError($"Failed to load QuestData for {selectedQuestName}.");
+			Debug.LogError($"Failed to load QuestData for {_selectedQuestName}.");
 		}
 	}
 
