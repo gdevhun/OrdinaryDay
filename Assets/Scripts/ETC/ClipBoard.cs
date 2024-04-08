@@ -24,13 +24,14 @@ public class ClipBoard : InteractionBase
         if (other.CompareTag("Player"))
         {
             isNear = false;
-            interactionText.text = "";
 
             // 클립보드 내려놓기
             if(isInter)
             {
                 PutBoard();
             }
+
+            interactionText.text = "";
         }
     }
 
@@ -55,6 +56,8 @@ public class ClipBoard : InteractionBase
 
         isInter = true;
 
+        interactionText.text = "";
+
         SoundManager.Instance.SFXPlay(SfxType.CheckClipBoard);
     }
 
@@ -64,6 +67,8 @@ public class ClipBoard : InteractionBase
         clipBoard.gameObject.SetActive(false);
 
         isInter = false;
+
+        interactionText.text = "E키로 근무일지를 확인할 수 있다.";
 
         SoundManager.Instance.SFXPlay(SfxType.PutClipBoard);
     }
