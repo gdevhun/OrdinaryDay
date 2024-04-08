@@ -14,7 +14,7 @@ public class FirstPlayer : MonoBehaviour
     public bool isWalk; // 걷고있는지 체크
     public bool isRun; // 달리고있는지 체크
     public LayerMask wallMask; // 벽 체크
-    public bool isFade; // 페이드중인지 체크
+    public bool isFade; // 페이드중인지 체크 (플레이어입력값안받는불변수)
 
     // 마우스 회전 관련
     public float mouseSensitivity = 100f; // 마우스 감도

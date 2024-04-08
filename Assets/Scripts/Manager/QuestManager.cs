@@ -9,7 +9,7 @@ public class QuestManager : Singleton<QuestManager>
     {
 		OnActiveQuestNum("QuestData1");
     }
-	private void OnActiveQuestNum(string stageName)
+	public void OnActiveQuestNum(string stageName)
 	{   //퀘스트에셋 넘버 불러오기
 		_selectedQuestName = stageName;
 		LoadSelectedStage();
