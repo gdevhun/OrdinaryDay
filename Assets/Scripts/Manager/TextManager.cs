@@ -36,12 +36,14 @@ public class TextManager : Singleton<TextManager>
 	private async UniTaskVoid DisplayText(string message) // 텍스트출력 코루틴
 	{
 		_totalText = message;
+		Debug.Log(_totalText);
 		_tempTextBuilder.Clear(); //텍스트 초기화(비워주고)
-
+		_source = new CancellationTokenSource();
 		for (int i = 0; i < message.Length; i++)
 		{
 			_tempTextBuilder.Append(message[i]); // 문자 하나씩 StringBuilder에 추가
 			talkText.text = _tempTextBuilder.ToString(); // 현재까지의 내용을 출력
+			//Debug.Log(message[i]);
 			await UniTask.Delay(TimeSpan.FromSeconds(0.1),cancellationToken: _source.Token); // 0.1f에 맞춰 텍스트 출력
 		}
 		isOverTextRoutine = true; //다출력됨.

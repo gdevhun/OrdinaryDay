@@ -7,11 +7,14 @@ public class QuestTrigger : MonoBehaviour
 {
     [SerializeField] private FirstPlayer FirstPlayer;
     public ScriptableObject scriptableObject;
-    private bool _isNextText;
+    public string scriptabeObjectName;
+    public GameObject nextTrggerObj;
     private void Start()
     {
-        Debug.Log(scriptableObject.ToString());
-        QuestManager.Instance.LoadQuestData("QuestData1_1");
+        //Debug.Log(scriptableObject.ToString());
+        //QuestManager.Instance.LoadQuestData("QuestData1_1");
+        //ebug.Log(scriptableObject.ToString());
+        QuestManager.Instance.LoadQuestData(scriptabeObjectName);
         // 처음에는 모두 비활성화
         //활성화되면 -> start에서 퀘스트정보 얻어오고
 
@@ -49,6 +52,7 @@ public class QuestTrigger : MonoBehaviour
                 TextManager.Instance.talkTextUI.SetActive(false);  // 비활성화
                 FirstPlayer.isFade = false;
                 gameObject.SetActive(false);
+                nextTrggerObj.SetActive(true);
             }
         }
     }
