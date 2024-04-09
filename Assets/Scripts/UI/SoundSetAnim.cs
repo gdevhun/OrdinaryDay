@@ -12,33 +12,28 @@ public class SoundSetAnim : MonoBehaviour
 		curImage.GetComponent<Image>().sprite = SoundImages[3];
 	}
 
-	public void OnSoundValueChanged(string str)
+	public void OnSoundValueChanged(bool isBGM)
 	{
-		float coef = 1;
+		float coef = isBGM ? 10f : 1f; // ìŠ¬ë¼ì´ë” ê°’ divide ê³„ìˆ˜
 
-		if(str.Equals("bgm"))  
-		{
-			coef = 10;
-		}
-
-		//ÃÖÀûÈ­¸¦ À§ÇØ¼­ getcomponet ´ë½Å tryget ÀÌº¥Æ®È£Ãâ·¯·Î ÄÚµå ÀÛ¼º
+		//ï¿½ï¿½ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ getcomponet ï¿½ï¿½ï¿½ tryget ï¿½Ìºï¿½Æ®È£ï¿½â·¯ï¿½ï¿½ ï¿½Úµï¿½ ï¿½Û¼ï¿½
 		if (!TryGetComponent(out Slider slider))
 		{
-			return;  //¿¹¿ÜÃ³¸®
+			return;  //ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½
 		}
 
-		switch (slider.value)  //value°ª¿¡ µû¸¥ ÀÌ¹ÌÁö º¯°æ
+		switch (slider.value)  //valueï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		{
 			case 0:
 				curImage.sprite = SoundImages[0];
 				break;
-			case float value when value > 0 && value < (0.25f / coef):
+			case float value when value > 0 && value < 0.25f / coef:
 				curImage.sprite = SoundImages[1];
 				break;
-			case float value when value >= (0.25f / coef) && value < (0.5f / coef):
+			case float value when value >= 0.25f / coef && value < 0.5f / coef:
 				curImage.sprite = SoundImages[2];
 				break;
-			case float value when value >= (0.9f / coef):
+			case float value when value >= 0.9f / coef:
 				curImage.sprite = SoundImages[3];
 				break;
 		}
