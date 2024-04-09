@@ -45,6 +45,7 @@ public class QuestTrigger : MonoBehaviour
             {
                 TextManager.Instance.DisplayTextSlowly(QuestManager.Instance.questData.talkText[textNum]);
                 await UniTask.WaitUntil(() => Input.GetKeyUp(KeyCode.Return) && TextManager.Instance.isOverTextRoutine);
+                TextManager.Instance.isOverTextRoutine = false;
             }
             if(Input.GetKeyUp(KeyCode.Return))
             {
