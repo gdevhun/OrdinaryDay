@@ -8,6 +8,7 @@ using DG.Tweening;
 
 public class PhoneEvent : MonoBehaviour
 {
+    public GameObject TriggerExceptionWall;
     public GameObject EventTrigger;
     private RectTransform _rectTransform; //스마트폰 이미지 rect트랜스폼.
     [SerializeField] private FirstPlayer FirstPlayer;
@@ -15,6 +16,7 @@ public class PhoneEvent : MonoBehaviour
 
     private void Awake()
     {
+        TriggerExceptionWall.SetActive(true);
         _rectTransform = gameObject.GetComponent<RectTransform>();
     }
     private void OnEnable()
@@ -34,10 +36,11 @@ public class PhoneEvent : MonoBehaviour
             textImages[i].gameObject.SetActive(true);
             await UniTask.Delay(TimeSpan.FromSeconds(2.5f));
         }
-        await UniTask.Delay(TimeSpan.FromSeconds(3f));
+        await UniTask.Delay(TimeSpan.FromSeconds(2f));
         await _rectTransform.DOMoveY(-1200, 2f).SetEase(Ease.OutCubic).AsyncWaitForCompletion();
         //다시 -1200으로
         await UniTask.Yield();
+        TriggerExceptionWall.SetActive(false);
         FirstPlayer.isFade = false;
         this.gameObject.SetActive(false);
         EventTrigger.SetActive(false);

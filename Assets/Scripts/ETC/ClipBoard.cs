@@ -13,7 +13,7 @@ public class ClipBoard : InteractionBase
     protected override void Awake()
     {
         base.Awake();
-        _rectTransform = gameObject.GetComponent<RectTransform>();
+        _rectTransform = clipBoardPanel.GetComponent<RectTransform>();
     }
 
     // 플레이어가 근처에 있음
@@ -76,17 +76,11 @@ public class ClipBoard : InteractionBase
     // 클립보드 내려놓기
     private async UniTaskVoid PutBoard()
     {
+        SoundManager.Instance.SFXPlay(SfxType.PutClipBoard);
         await _rectTransform.DOMoveY(-1200, 2f).SetEase(Ease.OutCubic).AsyncWaitForCompletion();
-        
-        await UniTask.Delay(TimeSpan.FromSeconds(1.5f));
-
+        await UniTask.Yield();
         clipBoardPanel.gameObject.SetActive(false);
         isInter = false;
-
         interactionText.text = "E키로 근무일지를 확인할 수 있다.";
-
-        SoundManager.Instance.SFXPlay(SfxType.PutClipBoard);
-
-        await UniTask.Yield();
     }
 }

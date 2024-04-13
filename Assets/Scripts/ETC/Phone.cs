@@ -12,6 +12,7 @@ public class Phone : InteractionBase
         if (other.CompareTag("Player"))
         {
             isNear = true;
+            SoundManager.Instance.SFXPlay(SfxType.PhoneFirstBell);
             interactionText.text = "E키로 핸드폰을 볼 수 있다.";
         }
     }
@@ -31,6 +32,5 @@ public class Phone : InteractionBase
 
         interactionText.text = "";
 
-        SoundManager.Instance.SFXPlay(SfxType.PhoneFirstBell);
     }
 }
