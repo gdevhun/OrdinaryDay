@@ -9,14 +9,13 @@ public class Phone : InteractionBase
     {
         if (other.CompareTag("Player"))
         {
+            SoundManager.Instance.SFXPlay(SfxType.PhoneFirstBell);
             isNear = true;
             interactionText.text = "E키로 핸드폰을 볼 수 있다.";
         }
     }
     protected override void Interaction()
     {
-        SoundManager.Instance.SFXPlay(SfxType.PhoneTextBell);
         phone.gameObject.SetActive(true);
-        
     }
 }

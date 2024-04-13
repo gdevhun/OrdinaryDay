@@ -5,9 +5,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using Unity.VisualScripting;
-using UnityEngine.EventSystems;
-
 
 public class PhoneEvent : MonoBehaviour
 {
@@ -16,6 +13,10 @@ public class PhoneEvent : MonoBehaviour
     [SerializeField] private FirstPlayer FirstPlayer;
     public Image[] textImages; //3개 메세지 이미지
 
+    private void Awake()
+    {
+        _rectTransform = gameObject.GetComponent<RectTransform>();
+    }
     private void OnEnable()
     {
         PhoneEventTrig().Forget();
@@ -24,16 +25,18 @@ public class PhoneEvent : MonoBehaviour
     private async UniTaskVoid PhoneEventTrig()
     {
         FirstPlayer.isFade = true;
-        await _rectTransform.DOMoveY(-100, 2.5f).AsyncWaitForCompletion(); //-1200에서 -100으로 
+        await _rectTransform.DOMoveY(500, 2.5f).SetEase(Ease.OutCubic).AsyncWaitForCompletion(); 
+        //-1200에서 -100으로 오버레이가 정규좌표라 500으로 설정.
         await UniTask.Delay(TimeSpan.FromSeconds(1f));
         for (int i = 0; i<textImages.Length; i++)
         {
-            SoundManager.Instance.SFXPlay(SfxType.PhoneTextBell);
+            SoundManager.Instance.SFXPlay(SfxType.PhoneSecondBell);
             textImages[i].gameObject.SetActive(true);
-            await UniTask.Delay(TimeSpan.FromSeconds(1.5f));
+            await UniTask.Delay(TimeSpan.FromSeconds(2.5f));
         }
-        await UniTask.Delay(TimeSpan.FromSeconds(2f));
-        await _rectTransform.DOMoveY(-1200, 2f).AsyncWaitForCompletion();
+        await UniTask.Delay(TimeSpan.FromSeconds(3f));
+        await _rectTransform.DOMoveY(-1200, 2f).SetEase(Ease.OutCubic).AsyncWaitForCompletion();
+        //다시 -1200으로
         await UniTask.Yield();
         FirstPlayer.isFade = false;
         this.gameObject.SetActive(false);
