@@ -1,9 +1,10 @@
 using UnityEngine;
 public class QuestBase : MonoBehaviour
 {
+    
     //첫번째 자식만 활성화하고 나머지자식들(trigger들)은 비활성화해놓는 퀘스트베이스코드
     //Quest 오브젝트마다 스크립트를 할당시켜줘야함.
-    void Start()
+    void OnEnable()
     {
         Transform[] children = gameObject.GetComponentsInChildren<Transform>();
 
@@ -14,5 +15,6 @@ public class QuestBase : MonoBehaviour
             children[i].gameObject.SetActive(false);
         }
     }
-    
+
+ 
 }

@@ -11,10 +11,7 @@ public class FadeManager : Singleton<FadeManager>
 
 	// 진행시간
 	float time = 0f;
-
-	// 진행시간 계산용
-	float timeCalc = 1f;
-
+	
 	void Awake()
     {
 		fadeInOutImage.SetActive(false);
@@ -22,7 +19,7 @@ public class FadeManager : Singleton<FadeManager>
 
 	private void Start()
 	{
-        //Fade(); //게임신 들어오면 자동 페이드
+        Fade(); //게임신 들어오면 자동 페이드
 	}
 	
     // 페이드 인/아웃 코루틴 실행
@@ -57,7 +54,7 @@ public class FadeManager : Singleton<FadeManager>
         while (alpha.a > 0f)
         {
             // 진행시간 증가
-            time += Time.deltaTime / timeCalc;
+            time += Time.deltaTime;
 
             // 알파값 감소
             alpha.a = Mathf.Lerp(1, 0, time);
