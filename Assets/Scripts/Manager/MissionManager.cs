@@ -28,9 +28,6 @@ public class MissionManager : Singleton<MissionManager>
         missionTextPanel.SetActive(false);
     }
 
-    public class enum Mission
-    {
-        
-    }
+    
 }
 
