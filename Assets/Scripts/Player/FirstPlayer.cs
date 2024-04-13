@@ -81,7 +81,7 @@ public class FirstPlayer : MonoBehaviour
         if(isFade) return;
 
         xRot -= mouseY;
-        xRot = Mathf.Clamp(xRot, -90f, 90f);
+        xRot = Mathf.Clamp(xRot, -40f, 40f);
         playerCamera.transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
         transform.Rotate(Vector3.up * mouseX);
     }
@@ -93,7 +93,7 @@ public class FirstPlayer : MonoBehaviour
 
         RaycastHit hit; // 레이 충돌정보
 
-        if (Physics.Raycast(rayStart, moveDir, out hit, 1.3f, wallMask))
+        if (Physics.Raycast(rayStart, moveDir, out hit, 2f, wallMask))
         {
             // 레이 디버깅용
             Debug.DrawRay(rayStart, moveDir * hit.distance, Color.red);
@@ -102,7 +102,7 @@ public class FirstPlayer : MonoBehaviour
         }
 
         // 레이 디버깅용
-        Debug.DrawRay(rayStart, moveDir * 1.3f, Color.green);
+        Debug.DrawRay(rayStart, moveDir * 2f, Color.green);
 
         return false;
     }
