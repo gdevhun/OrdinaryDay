@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using TMPro;
@@ -13,15 +14,22 @@ public class TextManager : Singleton<TextManager>
 	public TextMeshProUGUI talkText; 
 	private StringBuilder _tempTextBuilder;
 	private string _totalText;
-	private CancellationTokenSource _source = new CancellationTokenSource();
+	private CancellationTokenSource _tempSource = new CancellationTokenSource();
+	//private List<CancellationTokenSource> _sourceList = new List<CancellationTokenSource>();
 	public bool isOverTextRoutine = false; //텍스트출력이 되고있는지의 bool변수
+	
 
 	void Start()
 	{
 		talkTextUI.SetActive(false); //텍스트는 초기에 비활성화.
 		_tempTextBuilder = new StringBuilder();
 	}
-	
+
+	/*public void DisplayTextSlowly(string text)
+	{
+		talkTextUI.SetActive(true);
+		
+	}*/
 	public void DisplayTextSlowly(string text) //기본적인 텍스트 출력함수
 	{
 		talkTextUI.SetActive(true);
@@ -29,7 +37,12 @@ public class TextManager : Singleton<TextManager>
 	}
 	public void DisplayTextInstantly()  //엔터누르면실행->즉시 텍스트 출력 함수
 	{
-		_source.Cancel();
+		/*isOverTextRoutine = true;
+		foreach (var _tempSource in _sourceList)
+		{
+			_tempSource.Cancel();
+		}*/
+		_tempSource.Cancel();
 		talkText.text = _totalText; //텍스트 바로출력
 		isOverTextRoutine = true;
 	}
@@ -38,15 +51,18 @@ public class TextManager : Singleton<TextManager>
 		_totalText = message;
 		Debug.Log(_totalText);
 		_tempTextBuilder.Clear(); //텍스트 초기화(비워주고)
-		_source = new CancellationTokenSource();
+		_tempSource = new CancellationTokenSource();
+		//_sourceList.Add(_tempSource);
+		
 		for (int i = 0; i < message.Length; i++)
 		{
 			_tempTextBuilder.Append(message[i]); // 문자 하나씩 StringBuilder에 추가
 			talkText.text = _tempTextBuilder.ToString(); // 현재까지의 내용을 출력
 			//Debug.Log(message[i]);
-			await UniTask.Delay(TimeSpan.FromSeconds(0.1),cancellationToken: _source.Token); // 0.1f에 맞춰 텍스트 출력
+			await UniTask.Delay(TimeSpan.FromSeconds(0.1),cancellationToken: _tempSource.Token); // 0.1f에 맞춰 텍스트 출력
 		}
 		isOverTextRoutine = true; //다출력됨.
+		Debug.Log("!!!");
 	}
 
 }

@@ -1,10 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
+using Cysharp.Threading.Tasks;
 public class ClipBoard : InteractionBase
 {
-    public GameObject clipBoard; // 클립보드
+    public GameObject clipBoardPanel; // 클립보드
+
+    private RectTransform _rectTransform;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        _rectTransform = clipBoardPanel.GetComponent<RectTransform>();
+    }
 
     // 플레이어가 근처에 있음
     public override void OnTriggerEnter(Collider other)
@@ -52,24 +62,25 @@ public class ClipBoard : InteractionBase
     // 클립보드 확인하기
     private void CheckBoard()
     {
-        clipBoard.gameObject.SetActive(true);
+        clipBoardPanel.gameObject.SetActive(true);
 
         isInter = true;
 
         interactionText.text = "";
 
+        _rectTransform.DOMoveY(500, 2f).SetEase(Ease.OutCubic);
+        
         SoundManager.Instance.SFXPlay(SfxType.CheckClipBoard);
     }
 
     // 클립보드 내려놓기
-    private void PutBoard()
+    private async UniTaskVoid PutBoard()
     {
-        clipBoard.gameObject.SetActive(false);
-
-        isInter = false;
-
-        interactionText.text = "E키로 근무일지를 확인할 수 있다.";
-
         SoundManager.Instance.SFXPlay(SfxType.PutClipBoard);
+        await _rectTransform.DOMoveY(-1200, 2f).SetEase(Ease.OutCubic).AsyncWaitForCompletion();
+        await UniTask.Yield();
+        clipBoardPanel.gameObject.SetActive(false);
+        isInter = false;
+        interactionText.text = "E키로 근무일지를 확인할 수 있다.";
     }
 }

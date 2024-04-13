@@ -33,18 +33,18 @@ public class PlayerStep : MonoBehaviour
 	private void SFXStep()
     {
         // 페이드 체크
-        if(player.isFade)
-        {
-            return;
-        }
+        // if(player.isFade)
+        // {
+        //     return;
+        // }
 
 		// 플레이어가 걷는 상태일 때
-		playerWalkSound.SetActive(player.isWalk);
+		playerWalkSound.SetActive(player.isWalk && !player.isFade);
         playerWalkSound.GetComponent<AudioSource>().volume = SoundManager.Instance.sfxVolume;
 
 		// 플레이어가 뛰는 상태일 때
-		playerRunSound.SetActive(player.isRun);
-		playerRunBreathSound.SetActive(playerRunSound.activeSelf && playerStamina.curStamina <= 15 && playerStamina.curStamina > 0);
+		playerRunSound.SetActive(player.isRun && !player.isFade);
+		playerRunBreathSound.SetActive(playerRunSound.activeSelf && playerStamina.curStamina <= 15 && playerStamina.curStamina > 0 && !player.isFade);
         playerRunSound.GetComponent<AudioSource>().volume = SoundManager.Instance.sfxVolume;
         playerRunBreathSound.GetComponent<AudioSource>().volume = SoundManager.Instance.sfxVolume;   
     }   
