@@ -13,9 +13,6 @@ MonoBehaviour:
   m_Name: QuestData1_1
   m_EditorClassIdentifier: 
   questInfo: "\uD018\uC2A4\uD2B81-\uD2B8\uB9AC\uAC701"
-  questNumber: 0
+  questName: 
   talkText:
   - "\uD56D\uC0C1 \uC0C8\uBCBD \uADFC\uBB34\uB294 \uD53C\uACE4\uD558\uAD70..."
-  - "Peter\uB294 \uC624\uB298\uB3C4 Oscar\uC5D0 \uB300\uD574 \uBD88\uD3C9\uC744 \uD558\uB124."
-  - "Oscar\uAC00 \uBB34\uB2E8\uACB0\uADFC \uC77C\uC8FC\uC77C\uC9F8\uB77C\uACE0 \uD588\uC5B4."
-  triggerObject: {fileID: 0}
