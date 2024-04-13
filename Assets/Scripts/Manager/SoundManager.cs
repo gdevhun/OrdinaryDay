@@ -103,5 +103,6 @@ public enum SfxType
 	PickUpThing,
 	DropThing,
     CheckClipBoard,
-    PutClipBoard
+    PutClipBoard,
+    PhoneTextBell
 }
