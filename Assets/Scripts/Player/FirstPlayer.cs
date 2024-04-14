@@ -93,7 +93,7 @@ public class FirstPlayer : MonoBehaviour
 
         RaycastHit hit; // 레이 충돌정보
 
-        if (Physics.Raycast(rayStart, moveDir, out hit, 2f, wallMask))
+        if (Physics.Raycast(rayStart, moveDir, out hit, 1.3f, wallMask))
         {
             // 레이 디버깅용
             Debug.DrawRay(rayStart, moveDir * hit.distance, Color.red);
