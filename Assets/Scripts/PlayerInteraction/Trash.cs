@@ -9,6 +9,7 @@ public class Trash : InteractionBase
     private Rigidbody rigid; // 물리
     private MeshCollider meshCollider; // 콜라이더
     private bool isTrashBinNear; // 쓰레기통이 가까이있는지 체크
+    
     [SerializeField] private List<GameObject> trashList = new List<GameObject>(); // 쓰레기 놓으면 활성화 시켜줄 쓰레기
 
     // 플레이어가 근처에 있음
@@ -133,6 +134,26 @@ public class Trash : InteractionBase
 
             // 쓰레기통 쓰레기 활성화 및 개수 카운팅
             trashList[MissionManager.Instance.curCnt++].gameObject.SetActive(true);
+            TrashCheck();
+            
+        }
+    }
+
+    private void TrashCheck()
+    {
+        string tempString;
+        switch (MissionManager.Instance.curCnt)
+        {
+            case 1: tempString = MissionManager.Instance.missionTextList[1]; MissionManager.Instance.DisplayMissonText(tempString);
+                break;
+            case 2:  tempString = MissionManager.Instance.missionTextList[2]; MissionManager.Instance.DisplayMissonText(tempString);
+                break;
+            case 3:  tempString = MissionManager.Instance.missionTextList[3]; MissionManager.Instance.DisplayMissonText(tempString);
+                break;
+            case 4:  tempString = MissionManager.Instance.missionTextList[4]; MissionManager.Instance.DisplayMissonText(tempString);
+                break;
+            case 5:  MissionManager.Instance.HideMissionText(); MissionManager.Instance.CheckTrashMission();
+                break;
         }
     }
 }
