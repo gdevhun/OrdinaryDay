@@ -10,7 +10,8 @@ public class MissionManager : Singleton<MissionManager>
     public List<string> missionTextList;
     public GameObject missionTextPanel;
     public TextMeshProUGUI missionText;
-
+    public int curCnt;
+    public int completeCnt;
     void Start()
     {
         missionTextPanel.SetActive(false);
