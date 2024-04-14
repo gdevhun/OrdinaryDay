@@ -98,12 +98,9 @@ public enum BgmType
 // 재생할 효과음 타입 -> 키로 사용
 public enum SfxType
 {
-	OpenDoor,
-	CloseDoor,
-	PickUpThing,
-	DropThing,
-    CheckClipBoard,
-    PutClipBoard,
-    PhoneFirstBell,
-    PhoneSecondBell
+	OpenDoor, CloseDoor,
+	PickUpThing, DropThing,
+    CheckClipBoard, PutClipBoard,
+    PhoneFirstBell, PhoneSecondBell,
+    GetFlashLight, OnOffLight
 }

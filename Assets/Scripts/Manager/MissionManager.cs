@@ -10,14 +10,17 @@ public class MissionManager : Singleton<MissionManager>
     public List<string> missionTextList;
     public GameObject missionTextPanel;
     public TextMeshProUGUI missionText;
-
+    public GameObject WaterLevelTrigger;
+    
+    public int curCnt;
+    public int completeCnt;
     void Start()
     {
         missionTextPanel.SetActive(false);
 
     }
 
-    public void InitMissonText(string missionTxt)
+    public void DisplayMissonText(string missionTxt)
     {
         missionTextPanel.SetActive(true);
         missionText.text = missionTxt;
@@ -25,9 +28,16 @@ public class MissionManager : Singleton<MissionManager>
 
     public void HideMissionText()
     {
+        missionText.text = "";
         missionTextPanel.SetActive(false);
     }
 
-    
+    public void CheckTrashMission()
+    {
+        if (curCnt == completeCnt)
+        {
+            WaterLevelTrigger.gameObject.SetActive(true);
+        }
+    }
 }
 

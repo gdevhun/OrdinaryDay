@@ -24,6 +24,7 @@ public class QuestManager : Singleton<QuestManager>
 			// 로드 성공
 			Debug.Log("QuestData loaded successfully.");
 			isLoadedData = true;
+
 			totalTextCnt = questData.talkText.Count; //스크립터블오브젝트 총 대화길이.
 		}
 		else
