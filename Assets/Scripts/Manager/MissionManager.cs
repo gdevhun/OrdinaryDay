@@ -17,7 +17,7 @@ public class MissionManager : Singleton<MissionManager>
 
     }
 
-    public void InitMissonText(string missionTxt)
+    public void DisplayMissonText(string missionTxt)
     {
         missionTextPanel.SetActive(true);
         missionText.text = missionTxt;

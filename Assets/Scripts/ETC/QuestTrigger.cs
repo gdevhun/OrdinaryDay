@@ -23,18 +23,18 @@ public class QuestTrigger : MonoBehaviour
     private void Update()
     {
        
-        if (Input.GetKeyUp(KeyCode.Return) && !TextManager.Instance.isOverTextRoutine)
+        /*if (Input.GetKeyUp(KeyCode.Return) && !TextManager.Instance.isOverTextRoutine)
         {   // 엔터, 텍스 출력코루틴이 끝나지않았다면
             TextManager.Instance.DisplayTextInstantly(); //함수호출로 텍스트 바로 렌더링
             //isOverTextRoutine true됨.
-        }
+        }*/
 
-        else if (Input.GetKeyUp(KeyCode.Return) && TextManager.Instance.isOverTextRoutine)
+        if (Input.GetKeyUp(KeyCode.Return) && TextManager.Instance.isOverTextRoutine)
         {
             isOverCurText = true;
         }
 
-        if (isOverQuestTrig)
+        else if (isOverQuestTrig)
         {
             if(Input.GetKeyUp(KeyCode.Return))
             {
@@ -65,6 +65,11 @@ public class QuestTrigger : MonoBehaviour
                 }
 
                 isOverQuestTrig = true;
+                if (QuestManager.Instance.questData.isMissionAssigned) //미션업데이트
+                {
+                    MissionManager.Instance.DisplayMissonText(QuestManager.Instance.questData.missionName); 
+                    //미션 HUD 출력
+                }
             }
             
         }
