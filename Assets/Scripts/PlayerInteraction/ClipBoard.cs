@@ -13,7 +13,7 @@ public class ClipBoard : InteractionBase
     protected override void Awake()
     {
         base.Awake();
-        _rectTransform = gameObject.GetComponent<RectTransform>();
+        _rectTransform = clipBoardPanel.GetComponent<RectTransform>();
     }
 
     // 플레이어가 근처에 있음
