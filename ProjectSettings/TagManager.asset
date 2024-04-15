@@ -14,7 +14,7 @@ TagManager:
   - PlayerHand
   - Trash
   - ClipBoard
-  - CutScene
+  - TrashBin
   layers:
   - Default
   - TransparentFX

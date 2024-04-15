@@ -12,15 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1955944bfddbbb449ae277cd7b76f799, type: 3}
   m_Name: QuestData2_2
   m_EditorClassIdentifier: 
-  QuestInfo: 
-  QuestNumber: 0
-  talkText1: 
-  talkText2: 
-  talkText3: 
-  talkText4: 
-  talkText5: 
-  talkText6: 
-  talkText7: 
-  talkText8: 
-  talkText9: 
-  talkText10: 
+  questInfo: "\uD018\uC2A4\uD2B82-\uD2B8\uB9AC\uAC702"
+  isMissionAssigned: 1
+  missionName: "\uC218\uC555\uC2E4 \uC218\uC555 \uCCB4\uD06C\uD558\uAE30"
+  talkText:
+  - "\uC774\uC815\uB3C4\uBA74 \uC4F0\uB808\uAE30\uB294 \uB2E4 \uC62E\uAE34\uAC83
+    \uAC19\uC544."
+  - "\uC774\uC81C \uC218\uC555\uC2E4\uC5D0 \uAC00\uC11C \uC218\uC555\uC774 \uB9DE\uB294\uC9C0
+    \uD655\uC778\uD558\uC790."
+  - "\uC218\uC555\uC2E4\uC740 \uC2E4\uD5D8\uC2E4 \uC606\uC5D0 \uC788\uC5B4."

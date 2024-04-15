@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Trash : InteractionBase
@@ -7,6 +8,9 @@ public class Trash : InteractionBase
     private GameObject playerHand; // 플레이어 손
     private Rigidbody rigid; // 물리
     private MeshCollider meshCollider; // 콜라이더
+    private bool isTrashBinNear; // 쓰레기통이 가까이있는지 체크
+    
+    [SerializeField] private List<GameObject> trashList = new List<GameObject>(); // 쓰레기 놓으면 활성화 시켜줄 쓰레기
 
     // 플레이어가 근처에 있음
     public override void OnTriggerEnter(Collider other)
@@ -15,6 +19,26 @@ public class Trash : InteractionBase
         {
             isNear = true;
             interactionText.text = "R키로 쓰레기와 상호작용이 가능하다.";
+        }
+        
+        if(other.CompareTag("TrashBin"))
+        {
+            isTrashBinNear = true;
+        }
+    }
+
+    // 플레이어가 근처에 없음
+    public override void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            isNear = false;
+            interactionText.text = "";
+        }
+
+        if(other.CompareTag("TrashBin"))
+        {
+            isTrashBinNear = false;
         }
     }
 
@@ -101,5 +125,35 @@ public class Trash : InteractionBase
         
         // 상호작용 텍스트 지우기
         interactionText.text = "";
+
+        // 쓰레기통에 놓은거면
+        if(isTrashBinNear)
+        {
+            // 쓰레기 비활성화
+            gameObject.SetActive(false);
+
+            // 쓰레기통 쓰레기 활성화 및 개수 카운팅
+            trashList[MissionManager.Instance.curCnt++].gameObject.SetActive(true);
+            TrashCheck();
+            
+        }
+    }
+
+    private void TrashCheck()
+    {
+        string tempString;
+        switch (MissionManager.Instance.curCnt)
+        {
+            case 1: tempString = MissionManager.Instance.missionTextList[1]; MissionManager.Instance.DisplayMissonText(tempString);
+                break;
+            case 2:  tempString = MissionManager.Instance.missionTextList[2]; MissionManager.Instance.DisplayMissonText(tempString);
+                break;
+            case 3:  tempString = MissionManager.Instance.missionTextList[3]; MissionManager.Instance.DisplayMissonText(tempString);
+                break;
+            case 4:  tempString = MissionManager.Instance.missionTextList[4]; MissionManager.Instance.DisplayMissonText(tempString);
+                break;
+            case 5:  MissionManager.Instance.HideMissionText(); MissionManager.Instance.CheckTrashMission();
+                break;
+        }
     }
 }
