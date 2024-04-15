@@ -34,9 +34,9 @@ public class PhoneEvent : MonoBehaviour
         {
             SoundManager.Instance.SFXPlay(SfxType.PhoneSecondBell);
             textImages[i].gameObject.SetActive(true);
-            await UniTask.Delay(TimeSpan.FromSeconds(2.5f));
+            await UniTask.Delay(TimeSpan.FromSeconds(1.5f));
         }
-        await UniTask.Delay(TimeSpan.FromSeconds(2f));
+        await UniTask.Delay(TimeSpan.FromSeconds(1.5f));
         await _rectTransform.DOMoveY(-1200, 2f).SetEase(Ease.OutCubic).AsyncWaitForCompletion();
         //다시 -1200으로
         await UniTask.Yield();
