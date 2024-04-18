@@ -6,6 +6,7 @@ public class WaterPump : InteractionBase
 {
     public GameObject waterSound; // 물소리
     public bool isWater; // 최종적으로 체크해야하는 오브젝트인지 체크 1, 4, 7, 9, 12
+    public bool isFirst; // 처음 끈건지 체크 
 
     // 플레이어가 근처에 있음
     public override void OnTriggerEnter(Collider other)
@@ -39,8 +40,8 @@ public class WaterPump : InteractionBase
         SoundManager.Instance.SFXPlay(SfxType.WaterSwitch);
 
         if(!isWater) return;
+
         waterSound.SetActive(true);
-        MissionManager.Instance.curCnt++;
     }
 
     // 스위치 끄기
@@ -52,6 +53,9 @@ public class WaterPump : InteractionBase
 
         if(!isWater) return;
         waterSound.SetActive(false);
-        MissionManager.Instance.curCnt--;
+
+        if(isFirst) return;
+        isFirst = true;
+        MissionManager.Instance.curCnt++;
     }
 }
