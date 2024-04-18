@@ -24,6 +24,7 @@ public class Trash : InteractionBase
         if(other.CompareTag("TrashBin"))
         {
             isTrashBinNear = true;
+            interactionText.text = "R로 쓰레기를 놓을 수 있다.";
         }
     }
 

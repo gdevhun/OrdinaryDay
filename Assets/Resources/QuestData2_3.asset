@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1955944bfddbbb449ae277cd7b76f799, type: 3}
   m_Name: QuestData2_3
   m_EditorClassIdentifier: 
-  questInfo: "\uD018\uC2A4\uD2B82-\uD2B8\uB9AC\uAC702"
+  questInfo: "\uD018\uC2A4\uD2B82-\uD2B8\uB9AC\uAC703"
   isMissionAssigned: 0
   missionName: 
   talkText:

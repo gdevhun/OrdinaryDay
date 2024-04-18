@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,11 @@ public class WaterPump : InteractionBase
     public GameObject waterSound; // 물소리
     public bool isWater; // 최종적으로 체크해야하는 오브젝트인지 체크 1, 4, 7, 9, 12
     public bool isFirst; // 처음 끈건지 체크 
+    private void OnEnable()
+    {
+        MissionManager.Instance.curCnt = 0;
+        MissionManager.Instance.completeCnt = 5;
+    }
 
     // 플레이어가 근처에 있음
     public override void OnTriggerEnter(Collider other)
@@ -57,5 +63,7 @@ public class WaterPump : InteractionBase
         if(isFirst) return;
         isFirst = true;
         MissionManager.Instance.curCnt++;
+        MissionManager.Instance.CheckWaterLevelMission();
+
     }
 }
