@@ -47,7 +47,7 @@ public class FadeManager : Singleton<FadeManager>
         fadeInOutImage.GetComponent<Image>().color = alpha;
 
         // 1초동안 알파값 최대 유지(흑색)
-        await UniTask.Delay(TimeSpan.FromSeconds(1));
+        await UniTask.Delay(TimeSpan.FromSeconds(0.5));
 
         // 페이드 아웃
         // 알파값이 0 초과일때
