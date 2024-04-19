@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class AE_Door : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class AE_Door : MonoBehaviour
     private Vector3 defaulRot;
     private Vector3 openRot;
     public Text txt;//text 
+    public TMP_Text interactionText; // 상호작용 텍스트
+    public bool isHammer; // HammerRoomDoor인지 체크
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +34,9 @@ public class AE_Door : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && trig)
         {
             open = !open;
+
+            if(open) SoundManager.Instance.SFXPlay(SfxType.OpenDoor);
+            else SoundManager.Instance.SFXPlay(SfxType.CloseDoor);
         }
         if (trig)
         {
@@ -51,6 +57,14 @@ public class AE_Door : MonoBehaviour
             if (!open)
             {
                 txt.text = "Close E ";
+                // 텍스트
+                interactionText.text = "E키로 문과 상호작용이 가능하다.";
+
+                if(isHammer)
+                {
+                    interactionText.text = "열쇠가 필요하다.";
+                    SoundManager.Instance.SFXPlay(SfxType.DoorLock);
+                }
             }
             else
             {
@@ -65,6 +79,9 @@ public class AE_Door : MonoBehaviour
         {
             txt.text = " ";
             trig = false;
+            
+            // 텍스트
+            interactionText.text = "";
         }
     }
 }

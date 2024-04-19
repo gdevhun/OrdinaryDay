@@ -103,5 +103,6 @@ public enum SfxType
     CheckClipBoard, PutClipBoard,
     PhoneFirstBell, PhoneSecondBell,
     GetFlashLight, OnOffLight,
-    WaterSwitch
+    WaterSwitch,
+    PickUpDropKey, UseKey, DoorLock
 }
