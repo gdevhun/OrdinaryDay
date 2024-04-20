@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: QuestData3_1
   m_EditorClassIdentifier: 
   questInfo: "\uD018\uC2A4\uD2B83-\uD2B8\uB9AC\uAC701"
-  isMissionAssigned: 0
+  isMissionAssigned: 1
   missionName: 
   talkText:
   - "\uC5EC\uAE30 \uC6D0\uB798 \uCEF4\uD4E8\uD130\uAC00 \uCF1C\uC838\uC788\uC5C8\uB098?"
-  - "\uBE44\uBC00\uBC88\uD638 \uAC19\uC740 \uAC70 \uC796\uC544, \uBB50\uC9C0 \uC774\uAC8C?"

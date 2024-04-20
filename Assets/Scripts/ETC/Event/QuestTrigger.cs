@@ -13,6 +13,7 @@ public class QuestTrigger : MonoBehaviour
     public GameObject nextTrggerObj;
     public bool isOverCurText;
     private bool isOverQuestTrig;
+    public bool isPassWordEvent;
     private void OnEnable()
     {
         QuestManager.Instance.LoadQuestData(scriptabeObjectName);
@@ -43,6 +44,13 @@ public class QuestTrigger : MonoBehaviour
                 FirstPlayer.isFade = false;
                 gameObject.SetActive(false);
                 nextTrggerObj.SetActive(true);
+                if (isPassWordEvent)
+                {
+                    if (TryGetComponent(out PasswordEvent pe))
+                    {
+                        pe.StartCutScene();
+                    }
+                }
             }
         }
     }

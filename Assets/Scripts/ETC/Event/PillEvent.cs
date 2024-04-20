@@ -51,6 +51,7 @@ public class PillEvent : MonoBehaviour
     private async UniTask ActiveTrigger()
     {
         await UniTask.Delay(TimeSpan.FromSeconds(2.5));
+        gameObject.SetActive(false);
         nextTrigger.SetActive(true);
     }
 }

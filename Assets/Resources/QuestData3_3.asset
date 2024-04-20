@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1955944bfddbbb449ae277cd7b76f799, type: 3}
+  m_Name: QuestData3_3
+  m_EditorClassIdentifier: 
+  questInfo: "\uD018\uC2A4\uD2B83-\uD2B8\uB9AC\uAC703"
+  isMissionAssigned: 0
+  missionName: 
+  talkText:
+  - "\uBC29\uAE08 \uBCF5\uB3C4\uC5D0\uC11C \uBB34\uC2A8 \uC18C\uB9AC\uAC00 \uB4E4\uB9B0
+    \uAC83 \uAC19\uC544."
+  - "\uD655\uC778\uD558\uB7EC \uBCF5\uB3C4\uB85C \uB098\uAC00\uBCF4\uC790."
