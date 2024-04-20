@@ -13,6 +13,7 @@ public class PasswordEvent : MonoBehaviour
     private PlayableDirector _cutSceneDirector;
     public GameObject cutSceneObj; //플레이할 컷신
     public GameObject nextTrigger; //문트리거
+    public GameObject secretDoor;
 
     private void OnEnable()
     {
@@ -39,6 +40,7 @@ public class PasswordEvent : MonoBehaviour
         playerCam.SetActive(true);
         player.GetComponent<FirstPlayer>().isFade = false;
         nextTrigger.SetActive(true);
+        secretDoor.SetActive(false);
     }
     
 }
