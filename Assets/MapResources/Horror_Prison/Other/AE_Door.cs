@@ -12,7 +12,8 @@ public class AE_Door : MonoBehaviour
     private Vector3 openRot;
     public Text txt;//text 
     public TMP_Text interactionText; // 상호작용 텍스트
-    public bool isHammer; // HammerRoomDoor인지 체크
+    public bool isControl; // ControlRoomDoor인지 체크
+    public bool isOscar; // OscarRoomDoor인지 체크
     // Start is called before the first frame update
     void Start()
     {
@@ -60,9 +61,15 @@ public class AE_Door : MonoBehaviour
                 // 텍스트
                 interactionText.text = "E키로 문과 상호작용이 가능하다.";
 
-                if(isHammer)
+                if(isControl)
                 {
                     interactionText.text = "열쇠가 필요하다.";
+                    SoundManager.Instance.SFXPlay(SfxType.DoorLock);
+                }
+
+                if(isOscar)
+                {
+                    interactionText.text = "부술 수 있는게 필요하다.";
                     SoundManager.Instance.SFXPlay(SfxType.DoorLock);
                 }
             }

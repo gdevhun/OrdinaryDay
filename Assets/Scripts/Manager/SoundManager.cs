@@ -104,5 +104,6 @@ public enum SfxType
     PhoneFirstBell, PhoneSecondBell,
     GetFlashLight, OnOffLight,
     WaterSwitch,
-    PickUpDropKey, UseKey, DoorLock
+    PickUpDropKey, UseKey, DoorLock,
+    PickUpHammer, DropHammer, UseHammer, BrokenOscarDoor
 }
