@@ -15,7 +15,8 @@ TagManager:
   - Trash
   - ClipBoard
   - TrashBin
-  - HammerRoomDoor
+  - OscarRoomDoor
+  - ControlRoomDoor
   layers:
   - Default
   - TransparentFX
