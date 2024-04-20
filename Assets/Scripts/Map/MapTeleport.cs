@@ -46,7 +46,7 @@ public class MapTeleport : MonoBehaviour
         playerStep.playerRunBreathSound.SetActive(false);
 
         // 페이드 인/아웃, 플레이어 못 움직임, 문 여는소리
-        FadeManager.Instance.Fade();
+        FadeManager.Instance.Fade(1.5f);
         firstPlayer.isFade = true;
         SoundManager.Instance.SFXPlay(SfxType.OpenDoor);
 
