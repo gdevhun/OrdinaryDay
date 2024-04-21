@@ -7,7 +7,7 @@ public class WaterPump : InteractionBase
 {
     public GameObject waterSound; // 물소리
     public bool isWater; // 최종적으로 체크해야하는 오브젝트인지 체크 1, 4, 7, 9, 12
-    public bool isFirst; // 처음 끈건지 체크 
+    private bool isFirst; // 처음 끈건지 체크 
 
     // 미션 카운트 초기화
     private void OnEnable()

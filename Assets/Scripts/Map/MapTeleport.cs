@@ -22,6 +22,9 @@ public class MapTeleport : MonoBehaviour
     //플레이어 스텝
     public PlayerStep playerStep;
 
+    // DarkBG
+    public GameObject darkBG;
+
     // 맵 텔레포트
     public void Teleport()
     {
@@ -45,8 +48,11 @@ public class MapTeleport : MonoBehaviour
         playerStep.playerWalkSound.SetActive(false);
         playerStep.playerRunBreathSound.SetActive(false);
 
+        // DarkBG 셋팅
+        darkBG.SetActive(activeMap.name.Equals("Prison"));
+
         // 페이드 인/아웃, 플레이어 못 움직임, 문 여는소리
-        FadeManager.Instance.Fade(1.5f);
+        FadeManager.Instance.Fade(4f);
         firstPlayer.isFade = true;
         SoundManager.Instance.SFXPlay(SfxType.OpenDoor);
 
@@ -55,7 +61,7 @@ public class MapTeleport : MonoBehaviour
         SoundManager.Instance.SFXPlay(SfxType.CloseDoor);
 
         // 1초 후에 움직일수있음
-         yield return new WaitForSeconds(1.5f);
+         yield return new WaitForSeconds(3f);
         firstPlayer.isFade = false;
 
         // 3초 후에

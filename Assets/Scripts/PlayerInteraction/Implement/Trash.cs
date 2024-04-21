@@ -76,7 +76,7 @@ public class Trash : InteractionBase, IHandPickable
     {
         // 플레이어 손을 부모로 설정하고 로컬위치 초기화
         transform.SetParent(playerHand.transform);
-        transform.localPosition = Vector3.zero;
+        transform.localPosition = Vector3.zero + new Vector3(0, 0.5f, 0.5f);
 
         // 물리 비활성화
         rigid.isKinematic = true;
