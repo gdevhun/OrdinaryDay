@@ -9,9 +9,10 @@ public class Hammer : InteractionBase, IHandPickable
     public Rigidbody rigid { get; set; } // 물리
     public Collider coll { get; set; } // 콜라이더
 
+    // 기타 변수
     private bool isBreak; // 문을 부셨는지 체크
     private bool isNearOscarRoomDoor; // OscarRoomDoor가 근처에 있는지 체크
-    public GameObject oscarRoomDoor; // oscarRoomDoor
+    [SerializeField] private GameObject oscarRoomDoor; // oscarRoomDoor
 
     private void OnTriggerStay(Collider other)
     {
@@ -26,7 +27,7 @@ public class Hammer : InteractionBase, IHandPickable
     }
 
     // 플레이어가 근처에 없음
-    public override void OnTriggerExit(Collider other)
+    protected override void OnTriggerExit(Collider other)
     {
         base.OnTriggerExit(other);
 

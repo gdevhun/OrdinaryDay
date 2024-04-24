@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class WaterPump : InteractionBase
 {
-    public GameObject waterSound; // 물소리
-    public bool isWater; // 최종적으로 체크해야하는 오브젝트인지 체크 1, 4, 7, 9, 12
+    [SerializeField] private GameObject waterSound; // 물소리
+    [SerializeField] private bool isWater; // 최종적으로 체크해야하는 오브젝트인지 체크 1, 4, 7, 9, 12
     private bool isFirst; // 처음 끈건지 체크 
 
     // 미션 카운트 초기화
@@ -17,7 +17,7 @@ public class WaterPump : InteractionBase
     }
 
     // 플레이어가 근처에 있음
-    public override void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {

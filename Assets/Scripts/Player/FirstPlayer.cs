@@ -6,33 +6,29 @@ using UnityEngine;
 public class FirstPlayer : MonoBehaviour
 {
     // 플레이어 이동 관련
-    public float walkSpeed = 1f; // 걷는속도
-    public float runSpeed = 1.5f; // 뛰는속도
-    public float hAxis; // x축 이동값
-    public float vAxis; // z축 이동값
+    [Header ("플레이어 이동")] [Space (10f)]
+    [SerializeField] private float walkSpeed; // 걷는속도
+    [SerializeField] private float runSpeed; // 뛰는속도
+    [HideInInspector] public float hAxis; // x축 이동값
+    [HideInInspector] public float vAxis; // z축 이동값
     private Vector3 _moveDir; // 이동방향
-    public bool isWalk; // 걷고있는지 체크
-    public bool isRun; // 달리고있는지 체크
-    public LayerMask wallMask; // 벽 체크
-    public bool isFade; // 페이드중인지 체크 (플레이어입력값안받는불변수)
+    [HideInInspector] public bool isWalk; // 걷고있는지 체크
+    [HideInInspector] public bool isRun; // 달리고있는지 체크
+    [SerializeField] private LayerMask wallMask; // 벽 체크
+    [HideInInspector] public bool isFade; // 페이드중인지 체크 (플레이어입력값안받는불변수)
 
     // 마우스 회전 관련
-    public float mouseSensitivity = 100f; // 마우스 감도
-    private float _xRot = 0f; // x축 회전값
+    [Header ("플레이어 회전")] [Space (10f)]
+    [SerializeField] private float mouseSensitivity; // 마우스 감도
+    private float _xRot; // x축 회전값
     private float _mouseX; // 마우스 좌우 축값
     private float _mouseY; // 마우스 상하 축값
-    CinemachineVirtualCamera _playerCamera; // 플레이어 카메라
+    [SerializeField] private CinemachineVirtualCamera _playerCamera; // 플레이어 카메라
 
-	void Awake()
-    {
-        // 마우스 커서가 게임화면을 벗어나지않도록 잠금
-        Cursor.lockState = CursorLockMode.Locked;
+    // 마우스 커서가 게임화면을 벗어나지않도록 잠금
+	private void Awake() { Cursor.lockState = CursorLockMode.Locked; }
 
-        // 플레이어 카메라
-        _playerCamera = GameObject.Find("PlayerCam").GetComponent<CinemachineVirtualCamera>();
-    }
-
-    void Update()
+    private void Update()
     {
         // 입력
         GetInput();
@@ -45,7 +41,7 @@ public class FirstPlayer : MonoBehaviour
     }
 
     // 입력
-    void GetInput()
+    private void GetInput()
     {
         // 플레이어 이동
         hAxis = Input.GetAxisRaw("Horizontal");
@@ -59,7 +55,7 @@ public class FirstPlayer : MonoBehaviour
     }
 
     // 플레이어 이동
-    void Move()
+    private void Move()
     {
         // 카메라가 바라보는 방향으로 대각선 정규화
         _moveDir = (_playerCamera.transform.forward * vAxis + _playerCamera.transform.right * hAxis).normalized;
@@ -75,7 +71,7 @@ public class FirstPlayer : MonoBehaviour
     }
 
 	// 플레이어 회전
-	void Rot()
+	private void Rot()
     {
         // 페이드 체크
         if(isFade) return;
@@ -87,7 +83,7 @@ public class FirstPlayer : MonoBehaviour
     }
 
     // 벽 체크
-    bool WallCheck()
+    private bool WallCheck()
     {
         Vector3 rayStart = transform.position + Vector3.up * 0.5f; // 레이 시작지점
 

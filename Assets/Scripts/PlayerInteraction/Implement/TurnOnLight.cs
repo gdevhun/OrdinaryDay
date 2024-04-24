@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class TurnOnLight : InteractionBase
 {
-    public GameObject flashLight; // 손전등 빛
-    public bool isFlashLight; // 손전등을 가지고있는지 체크
+    [SerializeField] private GameObject flashLight; // 손전등 빛
+    [HideInInspector] public bool isFlashLight; // 손전등을 가지고있는지 체크
 
     // 상호작용 실행
     protected override void Update()

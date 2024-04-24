@@ -10,9 +10,10 @@ public class HammerRoomKey : InteractionBase, IHandPickable
     public Rigidbody rigid { get; set; } // 물리
     public Collider coll { get; set; } // 콜라이더
 
+    // 기타 변수
     private bool isOpen; // 열쇠로 문을 열었는지 체크 => 열고나서는 D키 관련 전부 작동 안 하게
     private bool isNearControlRoomDoor; // ControlRoomDoor가 근처에 있는지 체크
-    public GameObject controlRoomDoor; // ControlRoomDoor => 열쇠로 열면 AE_Door enable true
+    [SerializeField] private GameObject controlRoomDoor; // ControlRoomDoor => 열쇠로 열면 AE_Door enable true
 
     private void OnTriggerStay(Collider other)
     {
@@ -27,7 +28,7 @@ public class HammerRoomKey : InteractionBase, IHandPickable
     }
 
     // 플레이어가 근처에 없음
-    public override void OnTriggerExit(Collider other)
+    protected override void OnTriggerExit(Collider other)
     {
         base.OnTriggerExit(other);
 

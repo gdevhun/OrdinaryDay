@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class FlashLight : InteractionBase
 {
-    public GameObject playerFlashLightHand; // 손전등 손
-    public TurnOnLight turnOnLight; // 플레이어 손전등 상호작용
+    [SerializeField] private GameObject playerFlashLightHand; // 손전등 손
+    [SerializeField] private TurnOnLight turnOnLight; // 플레이어 손전등 상호작용
 
     // 손전등 얻기
     protected override void On()

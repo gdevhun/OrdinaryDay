@@ -5,30 +5,13 @@ using UnityEngine;
 public class PlayerStep : MonoBehaviour
 {
     // 플레이어
-    private FirstPlayer player;
-
-    // 플레이어 스태미너
-    private PlayerStamina playerStamina;
+    [SerializeField] private FirstPlayer player;
 
     // 걷는 소리 및 뛰는 소리
     public GameObject playerWalkSound, playerRunSound;
 
-    // 플레이어 뛰는 숨소리
-    public GameObject playerRunBreathSound;
-
-    private void Awake()
-    {
-        // 플레이어
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPlayer>();
-
-        // 플레이어 스태미너
-        playerStamina = player.GetComponent<PlayerStamina>();
-
-    }
-	private void Update()
-	{
-		SFXStep(); // 스텝 소리
-	}
+    // 플레이어 스텝 소리
+	private void Update() { SFXStep(); }
  
 	private void SFXStep()
     {
@@ -38,8 +21,6 @@ public class PlayerStep : MonoBehaviour
 
 		// 플레이어가 뛰는 상태일 때
 		playerRunSound.SetActive(player.isRun && !player.isFade);
-		playerRunBreathSound.SetActive(playerRunSound.activeSelf && playerStamina.curStamina <= 15 && playerStamina.curStamina > 0 && !player.isFade);
-        playerRunSound.GetComponent<AudioSource>().volume = SoundManager.Instance.sfxVolume;
-        playerRunBreathSound.GetComponent<AudioSource>().volume = SoundManager.Instance.sfxVolume;   
+        playerRunSound.GetComponent<AudioSource>().volume = SoundManager.Instance.sfxVolume;  
     }   
 }
