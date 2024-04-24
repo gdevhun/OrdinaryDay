@@ -105,5 +105,6 @@ public enum SfxType
     GetFlashLight, OnOffLight,
     WaterSwitch,
     PickUpDropKey, UseKey, DoorLock,
-    PickUpHammer, DropHammer, UseHammer, BrokenOscarDoor
+    PickUpHammer, DropHammer, UseHammer, BrokenOscarDoor,
+    SecretDoorOpen
 }
