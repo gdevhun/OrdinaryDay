@@ -23,7 +23,7 @@ public class SoundManager : Singleton<SoundManager>
          Map();
 
          // 배경음 재생
-         BgmSoundPlay(BgmType.Curious);
+         BgmSoundPlay(BgmType.Lab);
     }
 
     // 테스트
@@ -116,9 +116,10 @@ public class SoundManager : Singleton<SoundManager>
 // 재생할 배경음 타입 -> 키로 사용
 public enum BgmType
 {
-	Curious,
-	DarkHouse,
-	Woods
+	Lab,
+	PrisonEnter,
+	KeyUse,
+    Oscar
 }
 
 // 재생할 효과음 타입 -> 키로 사용
@@ -132,5 +133,5 @@ public enum SfxType
     WaterSwitch,
     PickUpDropKey, UseKey, DoorLock,
     PickUpHammer, DropHammer, UseHammer, BrokenOscarDoor,
-    SecretDoorOpen
+    SecretDoorOpen, ToPrisonDoorOpen, IronDoorOpen
 }

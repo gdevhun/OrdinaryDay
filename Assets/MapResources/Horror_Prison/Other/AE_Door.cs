@@ -35,9 +35,7 @@ public class AE_Door : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && trig)
         {
             open = !open;
-
-            if(open) SoundManager.Instance.SFXPlay(SfxType.OpenDoor);
-            else SoundManager.Instance.SFXPlay(SfxType.CloseDoor);
+            SoundManager.Instance.SFXPlay(SfxType.IronDoorOpen);
         }
         if (trig)
         {

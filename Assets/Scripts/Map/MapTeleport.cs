@@ -50,15 +50,17 @@ public class MapTeleport : MonoBehaviour
 
         // DarkBG 셋팅
         darkBG.SetActive(activeMap.name.Equals("Prison"));
+        
+        // 배경음 재생
+        if(activeMap.name.Equals("Prison")) SoundManager.Instance.BgmSoundPlay(BgmType.PrisonEnter);
 
-        // 페이드 인/아웃, 플레이어 못 움직임, 문 여는소리
+        // 페이드 인/아웃, 플레이어 못 움직임
         FadeManager.Instance.Fade(4f);
         firstPlayer.isFade = true;
-        SoundManager.Instance.SFXPlay(SfxType.OpenDoor);
 
-        // 1초 후에 문 닫는소리
+        // 1초 후에 문 여는소리
         yield return new WaitForSeconds(1f);
-        SoundManager.Instance.SFXPlay(SfxType.CloseDoor);
+        SoundManager.Instance.SFXPlay(SfxType.ToPrisonDoorOpen);
 
         // 1초 후에 움직일수있음
          yield return new WaitForSeconds(3f);

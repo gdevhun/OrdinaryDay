@@ -6,10 +6,19 @@ public class FlashLight : InteractionBase
 {
     [SerializeField] private GameObject playerFlashLightHand; // 손전등 손
     [SerializeField] private TurnOnLight turnOnLight; // 플레이어 손전등 상호작용
+    [SerializeField] private Collider coll; // 콜라이더
+
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.CompareTag("Player")) interactionText.text = "E키로 손전등을 들 수 있다.";
+    }
 
     // 손전등 얻기
     protected override void On()
     {
+        // 콜라이더 비활성화
+        coll.enabled = false;
+
         // 손전등 얻었다고 체크
         turnOnLight.isFlashLight = true;
         interactionText.text = "";
