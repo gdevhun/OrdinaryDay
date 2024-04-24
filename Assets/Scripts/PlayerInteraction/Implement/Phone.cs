@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Phone : InteractionBase
 {
-    public GameObject phone; // 핸드폰
+    [SerializeField] private GameObject phone; // 핸드폰
 
     // 플레이어가 근처에 있음
-    public override void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {

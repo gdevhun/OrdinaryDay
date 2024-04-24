@@ -10,11 +10,11 @@ public class InteractionBase : MonoBehaviour
     protected bool isInter = false; // 플레이어가 오브젝트와 상호작용을 한번 한 상태인지 체크
     protected GameObject interactionPanel; // 상호작용 패널
     protected TMP_Text interactionText; // 상호작용 텍스트
-    [SerializeField] protected string interText; // 상호작용 텍스트
-    [SerializeField] protected KeyCode interKey; // 상호작용 키
+    [Tooltip ("상호작용 텍스트")] [SerializeField] protected string interText; // 상호작용 텍스트
+    [Tooltip ("상호작용 키")] [SerializeField] protected KeyCode interKey; // 상호작용 키
 
     // 플레이어가 근처에 있음
-    public virtual void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
@@ -24,7 +24,7 @@ public class InteractionBase : MonoBehaviour
     }
 
     // 플레이어가 근처에 없음
-    public virtual void OnTriggerExit(Collider other)
+    protected virtual void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {

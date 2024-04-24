@@ -6,7 +6,7 @@ using DG.Tweening;
 using Cysharp.Threading.Tasks;
 public class ClipBoard : InteractionBase
 {
-    public GameObject clipBoardPanel; // 클립보드
+    [SerializeField] private GameObject clipBoardPanel; // 클립보드
     private RectTransform _rectTransform; // 클립보드패널 렉트
 
     // 초기화
@@ -19,7 +19,7 @@ public class ClipBoard : InteractionBase
     // 플레이어가 근처에 없음
     // 클립보드는 Exit 할때
     // 확인한 상태일때만 내려놓음
-    public override void OnTriggerExit(Collider other)
+    protected override void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {

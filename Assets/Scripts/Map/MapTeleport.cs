@@ -5,34 +5,35 @@ using UnityEngine;
 public class MapTeleport : MonoBehaviour
 {
     //맵 이동 할 위치 -> 인스펙터에서 설정
-    public GameObject mapTeleportPos;
+    [Header ("이동 할 위치")] [Space (10f)]
+    [SerializeField] private GameObject mapTeleportPos;
 
     //비활성화 할 맵 -> 인스펙터에서 설정
-    public GameObject deActiveMap;
+    [Header ("비활성화 맵")] [Space (10f)]
+    [SerializeField] private GameObject deActiveMap;
 
     //활성화 할 맵 -> 인스펙터에서 설정
-    public GameObject activeMap;
-
+    [Header ("활성화 맵")] [Space (10f)]
+    [SerializeField] private GameObject activeMap;
+    
     // 플레이어
-    public GameObject player;
+    [Header ("플레이어")] [Space (10f)]
+    [SerializeField] private GameObject player;
 
     // 퍼스트 플레이어
-    public FirstPlayer firstPlayer;
+    [SerializeField] private FirstPlayer firstPlayer;
 
     //플레이어 스텝
-    public PlayerStep playerStep;
+    [SerializeField] private PlayerStep playerStep;
 
     // DarkBG
-    public GameObject darkBG;
+    [Tooltip ("Prison 가림막")] [SerializeField] private GameObject darkBG;
 
     // 맵 텔레포트
-    public void Teleport()
-    {
-        StartCoroutine(TeleportCoroutine());
-    }
+    public void Teleport() { StartCoroutine(TeleportCoroutine()); }
     
     // 맵 텔레포트 코루틴
-    IEnumerator TeleportCoroutine()
+    private IEnumerator TeleportCoroutine()
     {
         // 이동할 맵 활성화
         activeMap.SetActive(true);
@@ -46,7 +47,6 @@ public class MapTeleport : MonoBehaviour
         // 플레이어 스텝 비활성화
         playerStep.playerRunSound.SetActive(false);
         playerStep.playerWalkSound.SetActive(false);
-        playerStep.playerRunBreathSound.SetActive(false);
 
         // DarkBG 셋팅
         darkBG.SetActive(activeMap.name.Equals("Prison"));

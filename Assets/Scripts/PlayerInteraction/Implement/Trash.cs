@@ -15,14 +15,14 @@ public class Trash : InteractionBase, IHandPickable
     [SerializeField] private List<GameObject> trashList = new List<GameObject>(); // 쓰레기 놓으면 활성화 시켜줄 쓰레기
 
     // 플레이어가 근처에 있음
-    public override void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider other)
     {
         base.OnTriggerEnter(other);
         if(other.CompareTag("TrashBin")) isTrashBinNear = true;
     }
 
     // 플레이어가 근처에 없음
-    public override void OnTriggerExit(Collider other)
+    protected override void OnTriggerExit(Collider other)
     {
         base.OnTriggerExit(other);
         if(other.CompareTag("TrashBin")) isTrashBinNear = false;
