@@ -62,6 +62,7 @@ public class Hammer : InteractionBase, IHandPickable
             interactionText.text = "";
             FadeManager.Instance.Fade(1.5f);
             SoundManager.Instance.SFXPlay(SfxType.BrokenOscarDoor);
+            SoundManager.Instance.BgmSoundPlay(BgmType.Oscar);
 
             // 오스카 컷씬
         }

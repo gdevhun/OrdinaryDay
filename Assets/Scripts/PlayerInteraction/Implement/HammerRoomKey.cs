@@ -11,16 +11,13 @@ public class HammerRoomKey : InteractionBase, IHandPickable
     public Collider coll { get; set; } // 콜라이더
 
     // 기타 변수
-    private bool isOpen; // 열쇠로 문을 열었는지 체크 => 열고나서는 D키 관련 전부 작동 안 하게
     private bool isNearControlRoomDoor; // ControlRoomDoor가 근처에 있는지 체크
     [SerializeField] private GameObject controlRoomDoor; // ControlRoomDoor => 열쇠로 열면 AE_Door enable true
 
     private void OnTriggerStay(Collider other)
     {
-        // 들고 있는 상태에서
-        // ControlRoomDoor가 근처에있으면
-        // T키로 열쇠를 사용할 수 있음
-        if(!isOpen && isInter && other.CompareTag("ControlRoomDoor"))
+        // 들고 있는 상태에서 ControlRoomDoor가 근처에있으면 T키로 열쇠를 사용할 수 있음
+        if(isInter && other.CompareTag("ControlRoomDoor"))
         {
             isNearControlRoomDoor = true;
             interactionText.text = "T키로 열쇠를 사용할 수 있다.";
@@ -33,7 +30,7 @@ public class HammerRoomKey : InteractionBase, IHandPickable
         base.OnTriggerExit(other);
 
         // ControlRoomDoor가 근처에 없음
-        if(!isOpen && other.CompareTag("ControlRoomDoor"))
+        if(other.CompareTag("ControlRoomDoor"))
         {
             isNearControlRoomDoor = false;
             interactionText.text = "";
@@ -54,14 +51,15 @@ public class HammerRoomKey : InteractionBase, IHandPickable
     {
         base.Update();
 
-        // T 키로 문열기 => 한번만
-        if(!isOpen && isNearControlRoomDoor && Input.GetKeyDown(KeyCode.T))
+        // T 키로 문열기 => 열쇠 사용하면 비활성화
+        if(isNearControlRoomDoor && Input.GetKeyDown(KeyCode.T))
         {
             controlRoomDoor.GetComponent<AE_Door>().enabled = true;
-            isOpen = true;
             interactionText.text = "E키로 문과 상호작용이 가능하다.";
             controlRoomDoor.GetComponent<AE_Door>().isControl = false;
             SoundManager.Instance.SFXPlay(SfxType.UseKey);
+            SoundManager.Instance.BgmSoundPlay(BgmType.KeyUse);
+            gameObject.SetActive(false);
         }
     }
 
