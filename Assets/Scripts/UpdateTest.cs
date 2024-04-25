@@ -1,20 +1,37 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
+using TMPro;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
+
 
 public class UpdateTest : MonoBehaviour
 {
-	//업데이트 테스트용
+	private readonly string _completePassword = "* * * * * * * * *";
+	public TextMeshProUGUI password;
+	private float _timeCalc = 0f;
+	private float _waitTime = 0.2f;
+	private int _curIndex = 0;
+	private bool _isOneSound;
+
 	private void Update()
 	{
-		/*if (Input.GetKeyUp(KeyCode.Return) && !TextManager.Instance.isOverTextRoutine)
-		{   // 엔터, 텍스 출력코루틴이 끝나지않았다면
-			TextManager.Instance.DisplayTextInstantly(); //함수호출로 텍스트 바로 렌더링
+		_timeCalc += Time.deltaTime;
+		if (_timeCalc >= _waitTime && _curIndex < _completePassword.Length)
+		{
+			password.text += _completePassword[_curIndex++];
+			_timeCalc = 0f;
 		}
-		else if (Input.GetKeyUp(KeyCode.Return) && TextManager.Instance.isOverTextRoutine)
-		{   //엔터, 텍스 출력 코루틴이 끝난 상황이면
-			TextManager.Instance.isOverTextRoutine = false;
-			TextManager.Instance.talkTextUI.SetActive(false);  // 비활성화
-		}*/
+
+		if (_curIndex == _completePassword.Length && !_isOneSound)
+		{
+			_isOneSound = true;
+			PlayDoorOpenSfx().Forget();
+		}
+	}
+
+	private async UniTask PlayDoorOpenSfx()
+	{
+		await UniTask.Delay(TimeSpan.FromSeconds(1.5));
+		SoundManager.Instance.SFXPlay(SfxType.SecretDoorOpen);
 	}
 }

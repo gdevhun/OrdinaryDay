@@ -9,6 +9,7 @@ public class FadeManager : Singleton<FadeManager>
 	// 페이드 인/아웃 이미지
 	public GameObject fadeInOutImage;
 
+	public bool isFadeOver;
 	// 진행시간
 	float time = 0f;
 	
@@ -19,17 +20,18 @@ public class FadeManager : Singleton<FadeManager>
 
 	private void Start()
 	{
-        Fade(); //게임신 들어오면 자동 페이드
+        Fade(1); //게임신 들어오면 자동 페이드
 	}
 	
     // 페이드 인/아웃 코루틴 실행
-    public void Fade()
+    public void Fade(float sec)
     {
-        GoFadeInOut().Forget();
+	    isFadeOver = false;
+        GoFadeInOut(sec).Forget();
     }
 
     // 페이드 인/아웃 코루틴
-    private async UniTaskVoid GoFadeInOut()
+    private async UniTaskVoid GoFadeInOut(float sec)
     {
         // 페이드 인/아웃 이미지 활성화
         fadeInOutImage.gameObject.SetActive(true);
@@ -47,7 +49,7 @@ public class FadeManager : Singleton<FadeManager>
         fadeInOutImage.GetComponent<Image>().color = alpha;
 
         // 1초동안 알파값 최대 유지(흑색)
-        await UniTask.Delay(TimeSpan.FromSeconds(1));
+        await UniTask.Delay(TimeSpan.FromSeconds(sec));
 
         // 페이드 아웃
         // 알파값이 0 초과일때
@@ -69,5 +71,6 @@ public class FadeManager : Singleton<FadeManager>
         fadeInOutImage.gameObject.SetActive(false);
 
         await UniTask.Yield();
+        isFadeOver = true;
     }
 }

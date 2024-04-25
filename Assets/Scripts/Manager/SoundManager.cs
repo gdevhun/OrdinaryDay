@@ -6,11 +6,13 @@ using UnityEngine;
 
 public class SoundManager : Singleton<SoundManager>
 {
-	public AudioSource bgmSound; // 배경음 오디오
-	public AudioClip[] bgmList, sfxList; // 배경음 및 효과음 리스트
-	public Dictionary<BgmType, AudioClip> mapBgm = new Dictionary<BgmType, AudioClip>(); // (타입, 배경음) 맵핑
-	public Dictionary<SfxType, AudioClip> mapSfx = new Dictionary<SfxType, AudioClip>(); // (타입, 효과음) 맵핑
-	public float bgmVolume, sfxVolume; // 배경음 볼륨 및 효과음 볼륨
+	[SerializeField] private AudioSource bgmSound; // 배경음 오디오
+	[SerializeField] private AudioClip[] bgmList, sfxList; // 배경음 및 효과음 리스트
+	private Dictionary<BgmType, AudioClip> mapBgm = new Dictionary<BgmType, AudioClip>(); // (타입, 배경음) 맵핑
+	private Dictionary<SfxType, AudioClip> mapSfx = new Dictionary<SfxType, AudioClip>(); // (타입, 효과음) 맵핑
+	[HideInInspector] public float bgmVolume, sfxVolume; // 배경음 볼륨 및 효과음 볼륨
+    [SerializeField] private GameObject player; // 플레이어
+    
 	private void Awake()
     {
          // 볼륨 초기화
@@ -21,7 +23,14 @@ public class SoundManager : Singleton<SoundManager>
          Map();
 
          // 배경음 재생
-         BgmSoundPlay(BgmType.Curious);
+         BgmSoundPlay(BgmType.Lab);
+    }
+
+    // 테스트
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Alpha9)) SFXPlay(SfxType.OpenDoor, new Vector3(10f, 0f, 0f));
+        if(Input.GetKeyDown(KeyCode.Alpha8)) SFXPlay(SfxType.OpenDoor);
     }
     
     // 배경음 및 효과음 맵핑
@@ -59,7 +68,7 @@ public class SoundManager : Singleton<SoundManager>
         bgmSound.Play();
     }
 
-    // 효과음
+    // 효과음 => 거리 영향 X
     public void SFXPlay(SfxType type)
     {
         // 맵핑된 효과음 재생
@@ -67,6 +76,23 @@ public class SoundManager : Singleton<SoundManager>
         {
             AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position, sfxVolume);
         }
+    }
+
+    // 효과음 => 거리에 따라
+    public void SFXPlay(SfxType type, Vector3 playPos)
+    {
+        // 맵핑된 효과음 재생
+        if (mapSfx.TryGetValue(type, out AudioClip clip))
+        {
+            AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position, CalcPlayerDis(playPos, 20.0f) * sfxVolume);
+        }
+    }
+
+    // 플레이어와 거리비 계산해서 리턴
+    // maxDis : 사운드가 들릴 수 있는 최대거리
+    private float CalcPlayerDis(Vector3 playPos, float maxDis)
+    {
+        return Mathf.Clamp(1.0f - (Vector3.Distance(playPos, player.transform.position) / maxDis), 0.0f, 1.0f);
     }
 
     // 배경음 볼륨 조절
@@ -90,9 +116,10 @@ public class SoundManager : Singleton<SoundManager>
 // 재생할 배경음 타입 -> 키로 사용
 public enum BgmType
 {
-	Curious,
-	DarkHouse,
-	Woods
+	Lab,
+	PrisonEnter,
+	KeyUse,
+    Oscar
 }
 
 // 재생할 효과음 타입 -> 키로 사용
@@ -102,5 +129,9 @@ public enum SfxType
 	PickUpThing, DropThing,
     CheckClipBoard, PutClipBoard,
     PhoneFirstBell, PhoneSecondBell,
-    GetFlashLight, OnOffLight
+    GetFlashLight, OnOffLight,
+    WaterSwitch,
+    PickUpDropKey, UseKey, DoorLock,
+    PickUpHammer, DropHammer, UseHammer, BrokenOscarDoor,
+    SecretDoorOpen, ToPrisonDoorOpen, IronDoorOpen
 }

@@ -5,31 +5,35 @@ using UnityEngine;
 public class MapTeleport : MonoBehaviour
 {
     //맵 이동 할 위치 -> 인스펙터에서 설정
-    public GameObject mapTeleportPos;
+    [Header ("이동 할 위치")] [Space (10f)]
+    [SerializeField] private GameObject mapTeleportPos;
 
     //비활성화 할 맵 -> 인스펙터에서 설정
-    public GameObject deActiveMap;
+    [Header ("비활성화 맵")] [Space (10f)]
+    [SerializeField] private GameObject deActiveMap;
 
     //활성화 할 맵 -> 인스펙터에서 설정
-    public GameObject activeMap;
-
+    [Header ("활성화 맵")] [Space (10f)]
+    [SerializeField] private GameObject activeMap;
+    
     // 플레이어
-    public GameObject player;
+    [Header ("플레이어")] [Space (10f)]
+    [SerializeField] private GameObject player;
 
     // 퍼스트 플레이어
-    public FirstPlayer firstPlayer;
+    [SerializeField] private FirstPlayer firstPlayer;
 
     //플레이어 스텝
-    public PlayerStep playerStep;
+    [SerializeField] private PlayerStep playerStep;
+
+    // DarkBG
+    [Tooltip ("Prison 가림막")] [SerializeField] private GameObject darkBG;
 
     // 맵 텔레포트
-    public void Teleport()
-    {
-        StartCoroutine(TeleportCoroutine());
-    }
+    public void Teleport() { StartCoroutine(TeleportCoroutine()); }
     
     // 맵 텔레포트 코루틴
-    IEnumerator TeleportCoroutine()
+    private IEnumerator TeleportCoroutine()
     {
         // 이동할 맵 활성화
         activeMap.SetActive(true);
@@ -43,19 +47,23 @@ public class MapTeleport : MonoBehaviour
         // 플레이어 스텝 비활성화
         playerStep.playerRunSound.SetActive(false);
         playerStep.playerWalkSound.SetActive(false);
-        playerStep.playerRunBreathSound.SetActive(false);
 
-        // 페이드 인/아웃, 플레이어 못 움직임, 문 여는소리
-        FadeManager.Instance.Fade();
+        // DarkBG 셋팅
+        darkBG.SetActive(activeMap.name.Equals("Prison"));
+        
+        // 배경음 재생
+        if(activeMap.name.Equals("Prison")) SoundManager.Instance.BgmSoundPlay(BgmType.PrisonEnter);
+
+        // 페이드 인/아웃, 플레이어 못 움직임
+        FadeManager.Instance.Fade(4f);
         firstPlayer.isFade = true;
-        SoundManager.Instance.SFXPlay(SfxType.OpenDoor);
 
-        // 1초 후에 문 닫는소리
+        // 1초 후에 문 여는소리
         yield return new WaitForSeconds(1f);
-        SoundManager.Instance.SFXPlay(SfxType.CloseDoor);
+        SoundManager.Instance.SFXPlay(SfxType.ToPrisonDoorOpen);
 
         // 1초 후에 움직일수있음
-         yield return new WaitForSeconds(1.5f);
+         yield return new WaitForSeconds(3f);
         firstPlayer.isFade = false;
 
         // 3초 후에
