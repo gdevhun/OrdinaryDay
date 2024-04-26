@@ -10,8 +10,8 @@ public class MissionManager : Singleton<MissionManager>
     public List<string> missionTextList;
     public GameObject missionTextPanel;
     public TextMeshProUGUI missionText;
-    public GameObject waterLevelMissonTrigger;
-    public GameObject pillMissonTrigger;
+    public GameObject waterLevelMissionTrigger;
+    public GameObject pillMissionTrigger;
     
     public int curCnt;
     public int completeCnt;
@@ -37,7 +37,7 @@ public class MissionManager : Singleton<MissionManager>
     {
         if (curCnt == completeCnt)
         {
-            waterLevelMissonTrigger.gameObject.SetActive(true);
+            waterLevelMissionTrigger.gameObject.SetActive(true);
         }
     }
 
@@ -45,7 +45,7 @@ public class MissionManager : Singleton<MissionManager>
     {
         if (curCnt == completeCnt)
         {
-            pillMissonTrigger.gameObject.SetActive(true);
+            pillMissionTrigger.gameObject.SetActive(true);
         }
     }
 }
