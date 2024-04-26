@@ -7,16 +7,16 @@ using UnityEngine;
 
 public class QuestTrigger : MonoBehaviour
 {
-    [SerializeField] private FirstPlayer FirstPlayer;
+    [SerializeField] private FirstPlayer firstPlayer;
     public ScriptableObject scriptableObject;
-    public string scriptabeObjectName;
-    public GameObject nextTrggerObj;
+    public string scriptableObjectName;
+    public GameObject nextTriggerObj;
     public bool isOverCurText;
-    private bool isOverQuestTrig;
+    private bool _isOverQuestTrig;
     public bool isPassWordEvent;
     private void OnEnable()
     {
-        QuestManager.Instance.LoadQuestData(scriptabeObjectName);
+        QuestManager.Instance.LoadQuestData(scriptableObjectName);
         // 처음에는 모두 비활성화
         //활성화되면 -> start에서 퀘스트정보 얻어오고
     }
@@ -35,15 +35,15 @@ public class QuestTrigger : MonoBehaviour
             isOverCurText = true;
         }
 
-        else if (isOverQuestTrig)
+        else if (_isOverQuestTrig)
         {
             if(Input.GetKeyUp(KeyCode.Return))
             {
                 TextManager.Instance.isOverTextRoutine = false;
                 TextManager.Instance.talkTextUI.SetActive(false);  // 비활성화
-                FirstPlayer.isFade = false;
+                firstPlayer.isFade = false;
                 gameObject.SetActive(false);
-                nextTrggerObj.SetActive(true);
+                nextTriggerObj.SetActive(true);
                 if (isPassWordEvent)
                 {
                     if (TryGetComponent(out PasswordEvent pe))
@@ -60,7 +60,7 @@ public class QuestTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            FirstPlayer.isFade = true;
+            firstPlayer.isFade = true;
             if (QuestManager.Instance.isLoadedData)
             {
                 for (int textNum = 0; textNum < QuestManager.Instance.totalTextCnt; textNum++)
@@ -72,7 +72,7 @@ public class QuestTrigger : MonoBehaviour
                     TextManager.Instance.isOverTextRoutine = false;
                 }
 
-                isOverQuestTrig = true;
+                _isOverQuestTrig = true;
                 if (QuestManager.Instance.questData.isMissionAssigned) //미션업데이트
                 {
                     MissionManager.Instance.DisplayMissonText(QuestManager.Instance.questData.missionName); 

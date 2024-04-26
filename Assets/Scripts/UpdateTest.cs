@@ -9,7 +9,7 @@ public class UpdateTest : MonoBehaviour
 	private readonly string _completePassword = "* * * * * * * * *";
 	public TextMeshProUGUI password;
 	private float _timeCalc = 0f;
-	private float _waitTime = 0.2f;
+	private readonly float _waitTime = 0.2f;
 	private int _curIndex = 0;
 	private bool _isOneSound;
 

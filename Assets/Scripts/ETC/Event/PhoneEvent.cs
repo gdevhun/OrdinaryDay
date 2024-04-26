@@ -8,15 +8,15 @@ using DG.Tweening;
 
 public class PhoneEvent : MonoBehaviour
 {
-    public GameObject TriggerExceptionWall;
-    public GameObject EventTrigger;
+    public GameObject triggerExceptionWall;
+    public GameObject eventTrigger;
     private RectTransform _rectTransform; //스마트폰 이미지 rect트랜스폼.
-    [SerializeField] private FirstPlayer FirstPlayer;
+    [SerializeField] private FirstPlayer firstPlayer;
     public Image[] textImages; //3개 메세지 이미지
 
     private void Awake()
     {
-        TriggerExceptionWall.SetActive(true);
+        triggerExceptionWall.SetActive(true);
         _rectTransform = gameObject.GetComponent<RectTransform>();
     }
     private void OnEnable()
@@ -26,7 +26,7 @@ public class PhoneEvent : MonoBehaviour
 
     private async UniTaskVoid PhoneEventTrig()
     {
-        FirstPlayer.isFade = true;
+        firstPlayer.isFade = true;
         await _rectTransform.DOMoveY(500, 2.5f).SetEase(Ease.OutCubic).AsyncWaitForCompletion(); 
         //-1200에서 -100으로 오버레이가 정규좌표라 500으로 설정.
         await UniTask.Delay(TimeSpan.FromSeconds(1f));
@@ -40,10 +40,10 @@ public class PhoneEvent : MonoBehaviour
         await _rectTransform.DOMoveY(-1200, 2f).SetEase(Ease.OutCubic).AsyncWaitForCompletion();
         //다시 -1200으로
         await UniTask.Yield();
-        TriggerExceptionWall.SetActive(false);
-        FirstPlayer.isFade = false;
+        triggerExceptionWall.SetActive(false);
+        firstPlayer.isFade = false;
         this.gameObject.SetActive(false);
-        EventTrigger.SetActive(false);
+        eventTrigger.SetActive(false);
     }
     
 }
