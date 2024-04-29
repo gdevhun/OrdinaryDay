@@ -20,7 +20,7 @@
 <img src="https://img.shields.io/badge/csharp-512BD4?style=for-the-badge&logo=csharp&logoColor=white">
 
 ## 협업 가이드 및 규칙 Tool - 프로젝트 스케줄 📅
-- https://www.notion.so/UnityTeamProject-06bfc7d0cf334de69735aa4340d57176
+- https://river-pearl-643.notion.site/1c6fa74bff1047479a46d583f56dfcd1?pvs=4
 
 
 .... 

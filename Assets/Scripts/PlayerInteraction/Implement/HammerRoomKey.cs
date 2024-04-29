@@ -6,9 +6,9 @@ using UnityEngine;
 public class HammerRoomKey : InteractionBase, IHandPickable
 {
     // 인터페이스 변수
-    public GameObject playerHand { get; set; } // 플레이어 손
-    public Rigidbody rigid { get; set; } // 물리
-    public Collider coll { get; set; } // 콜라이더
+    public GameObject PlayerHand { get; set; } // 플레이어 손
+    public Rigidbody Rigid { get; set; } // 물리
+    public Collider Coll { get; set; } // 콜라이더
 
     // 기타 변수
     private bool isNearControlRoomDoor; // ControlRoomDoor가 근처에 있는지 체크
@@ -41,9 +41,9 @@ public class HammerRoomKey : InteractionBase, IHandPickable
     protected override void Awake()
     {
         base.Awake();
-        playerHand = GameObject.FindGameObjectWithTag("PlayerHand");
-        rigid = GetComponent<Rigidbody>();
-        coll = GetComponent<BoxCollider>();
+        PlayerHand = GameObject.FindGameObjectWithTag("PlayerHand");
+        Rigid = GetComponent<Rigidbody>();
+        Coll = GetComponent<BoxCollider>();
     }
 
     // 상호작용 실행
@@ -88,14 +88,14 @@ public class HammerRoomKey : InteractionBase, IHandPickable
     public void PickUp()
     {
         // 플레이어 손을 부모로 설정하고 로컬위치 초기화
-        transform.SetParent(playerHand.transform);
+        transform.SetParent(PlayerHand.transform);
         transform.localPosition = Vector3.zero + new Vector3(-0.4f, 0.7f, 0);
 
         // 물리 비활성화
-        rigid.isKinematic = true;
+        Rigid.isKinematic = true;
 
         // 콜라이더 비활성화
-        coll.enabled = false;
+        Coll.enabled = false;
     }
 
     // 인터페이스 구현
@@ -105,9 +105,9 @@ public class HammerRoomKey : InteractionBase, IHandPickable
         transform.SetParent(null);
 
         // 물리 활성화
-        rigid.isKinematic = false;
+        Rigid.isKinematic = false;
 
         // 콜라이더 활성화
-        coll.enabled = true;
+        Coll.enabled = true;
     }
 }
