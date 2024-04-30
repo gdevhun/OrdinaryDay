@@ -19,7 +19,7 @@ public class OscarIllusion : PrisonEventBase
     private async UniTask ShowIllusion()
     {
         Vector3 startPos = Trans.position;
-        SoundManager.Instance.SFXPlay(SfxType.WeirdSfx2);
+        SoundManager.Instance.SFXPlay(SfxType.GhostMoan);
         while (elapsedTime < moveDuration)
         {
             // 현재 시간에 대한 비율을 계산하여 시작 위치에서 목표 위치까지 이동

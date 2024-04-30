@@ -134,5 +134,6 @@ public enum SfxType
     PickUpDropKey, UseKey, DoorLock,
     PickUpHammer, DropHammer, UseHammer, BrokenOscarDoor,
     SecretDoorOpen, ToPrisonDoorOpen, IronDoorOpen,
-    BodyBagMove, WeirdSfx, MetalFallSfx, WeirdSfx2
+    BodyBagMove, WeirdSfx, MetalFallSfx, WeirdSfx2,
+    GhostMoan
 }
