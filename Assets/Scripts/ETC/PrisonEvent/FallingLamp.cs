@@ -18,7 +18,7 @@ public class FallingLamp : PrisonEventBase
         await UniTask.Delay(TimeSpan.FromSeconds(0.7f));
         ActiveRigid();
         SoundManager.Instance.SFXPlay(SfxType.MetalFallSfx);
-        await UniTask.Delay(TimeSpan.FromSeconds(1.2f));
+        await UniTask.Delay(TimeSpan.FromSeconds(2.5f));
         SoundManager.Instance.SFXPlay(SfxType.WeirdSfx);
         UnActiveRigid();
     }
