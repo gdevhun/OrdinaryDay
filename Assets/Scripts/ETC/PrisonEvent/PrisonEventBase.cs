@@ -40,4 +40,16 @@ public class PrisonEventBase : MonoBehaviour
             isTriggerEntered = true;
         };
     }
+
+    protected void ActiveRigid()
+    {
+        Rigid.isKinematic = false;  
+        Rigid.constraints = RigidbodyConstraints.None;
+    }
+
+    protected void UnActiveRigid()
+    {
+        Rigid.isKinematic = true;
+        Rigid.constraints = RigidbodyConstraints.FreezeAll;
+    }
 }
