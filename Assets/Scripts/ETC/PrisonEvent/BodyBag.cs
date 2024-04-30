@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
@@ -9,7 +10,7 @@ public class BodyBag : PrisonEventBase
     {
         base.Awake();
         targetPos = new Vector3(-426f, -207.8f, -10.5f);
-        moveDuration = 2.5f;
+        moveDuration = 0.5f;
         //Z -10.493
     }
     
@@ -21,6 +22,7 @@ public class BodyBag : PrisonEventBase
     private async UniTask MoveObject()
     {
         Vector3 startPos = Trans.position;
+        SoundManager.Instance.SFXPlay(SfxType.BodyBagMove);
         while (elapsedTime < moveDuration)
         {
             // 현재 시간에 대한 비율을 계산하여 시작 위치에서 목표 위치까지 이동
@@ -31,13 +33,15 @@ public class BodyBag : PrisonEventBase
             
             // 다음 프레임까지 대기
             await UniTask.Yield();
-            Debug.Log(gameObject.transform.position);
         }
         
         // 이동이 완료된 후 최종 위치 설정
         Trans.position = targetPos;
-        
-
+        SoundManager.Instance.SFXPlay(SfxType.WeirdSfx);
+        Rigid.isKinematic = false;  
+        Rigid.constraints = RigidbodyConstraints.None;
+        await UniTask.Delay(TimeSpan.FromSeconds(1.5));
+        Rigid.isKinematic = true;
+        Rigid.constraints = RigidbodyConstraints.FreezeAll;
     }
-
 }

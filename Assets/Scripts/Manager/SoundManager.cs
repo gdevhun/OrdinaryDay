@@ -133,5 +133,6 @@ public enum SfxType
     WaterSwitch,
     PickUpDropKey, UseKey, DoorLock,
     PickUpHammer, DropHammer, UseHammer, BrokenOscarDoor,
-    SecretDoorOpen, ToPrisonDoorOpen, IronDoorOpen
+    SecretDoorOpen, ToPrisonDoorOpen, IronDoorOpen,
+    BodyBagMove, WeirdSfx
 }
