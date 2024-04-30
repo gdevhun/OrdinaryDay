@@ -6,7 +6,7 @@ using UnityEngine.Playables;
 
 public enum cutSceneType
 {
-    Pill , Password
+    Pill , Password, DanielPastView
 }
 public class TimeLineManager : Singleton<TimeLineManager>
 {
@@ -17,7 +17,7 @@ public class TimeLineManager : Singleton<TimeLineManager>
     
     public void OnCutSceneObj(cutSceneType cutSceneType) //컷신 활성화
     {
-        player.GetComponent<FirstPlayer>().isFade = false;
+        player.GetComponent<FirstPlayer>().isFade = true;
         playerCam.SetActive(false);
         cutSceneList[(int)cutSceneType].SetActive(true);
         cutSceneDirector = cutSceneList[(int)cutSceneType].GetComponent<PlayableDirector>();
