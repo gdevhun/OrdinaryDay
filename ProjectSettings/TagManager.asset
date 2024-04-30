@@ -17,6 +17,8 @@ TagManager:
   - TrashBin
   - OscarRoomDoor
   - ControlRoomDoor
+  - Metal
+  - Plastic
   layers:
   - Default
   - TransparentFX

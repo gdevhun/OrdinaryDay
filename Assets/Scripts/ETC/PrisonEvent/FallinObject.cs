@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-public class FallingLamp : PrisonEventBase
+public class FallingObject : PrisonEventBase
 {
     protected override void EventOccur()
     {
@@ -15,9 +15,16 @@ public class FallingLamp : PrisonEventBase
 
     private async UniTask FallObject()
     {
-        await UniTask.Delay(TimeSpan.FromSeconds(0.7f));
         ActiveRigid();
-        SoundManager.Instance.SFXPlay(SfxType.MetalFallSfx);
+        await UniTask.Delay(TimeSpan.FromSeconds(0.7f));
+        if (gameObject.CompareTag("Metal"))
+        {
+            SoundManager.Instance.SFXPlay(SfxType.MetalFallSfx);
+        }
+        else
+        {
+            SoundManager.Instance.SFXPlay(SfxType.PickUpHammer);
+        }
         await UniTask.Delay(TimeSpan.FromSeconds(2.5f));
         SoundManager.Instance.SFXPlay(SfxType.WeirdSfx);
         UnActiveRigid();
