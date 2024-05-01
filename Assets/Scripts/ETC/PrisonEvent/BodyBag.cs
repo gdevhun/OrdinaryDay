@@ -6,11 +6,15 @@ using UnityEngine;
 
 public class BodyBag : PrisonEventBase
 {
+    [SerializeField] private Vector3 thisTargetPos;
+    [SerializeField] private float thisMoveDuration;
     protected override void Awake()
     {
         base.Awake();
-        targetPos = new Vector3(-426f, -207.8f, -10.5f);
-        moveDuration = 0.5f;
+        targetPos = thisTargetPos;
+        moveDuration = thisMoveDuration;
+        //targetPos = new Vector3(-426f, -207.8f, -10.5f);
+        //moveDuration = 0.5f;
     }
     
     protected override void EventOccur()

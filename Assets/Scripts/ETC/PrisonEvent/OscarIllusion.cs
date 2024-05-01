@@ -4,11 +4,15 @@ using Cysharp.Threading.Tasks;
 
 public class OscarIllusion : PrisonEventBase
 {
+    [SerializeField] private Vector3 thisTargetPos;
+    [SerializeField] private float thisMoveDuration;
     protected override void Awake()
     {
         base.Awake();
-        targetPos = new Vector3(-430.2f, -209.5f, 12f);
-        moveDuration = 1f;
+        targetPos = thisTargetPos;
+        moveDuration = thisMoveDuration;
+        //targetPos = new Vector3(-430.2f, -209.5f, 12f);
+        //moveDuration = 1f;
     }
     protected override void EventOccur()
     {
