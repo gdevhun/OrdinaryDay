@@ -8,7 +8,7 @@ public class ClipBoard : InteractionBase
 {
     [SerializeField] private GameObject clipBoardPanel; // 클립보드
     private RectTransform _rectTransform; // 클립보드패널 렉트
-    [SerializeField] public bool isClipBoard; // 클립보드를 확인했는지 체크
+    [HideInInspector] public bool isClipBoard; // 클립보드를 확인했는지 체크
 
     // 초기화
     protected override void Awake()
