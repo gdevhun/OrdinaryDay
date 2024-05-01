@@ -57,8 +57,9 @@ public class FirstPlayer : MonoBehaviour
     // 플레이어 이동
     private void Move()
     {
-        // 카메라가 바라보는 방향으로 대각선 정규화
-        _moveDir = (_playerCamera.transform.forward * vAxis + _playerCamera.transform.right * hAxis).normalized;
+        // 카메라가 바라보는 수평 평면 상의 방향으로 설정 => 오브젝트와 충돌 시 아래로 내려가는 이슈 픽스
+        _moveDir = (Vector3.ProjectOnPlane(_playerCamera.transform.forward, Vector3.up).normalized * vAxis
+        + Vector3.ProjectOnPlane(_playerCamera.transform.right, Vector3.up).normalized * hAxis).normalized;
 
         // 벽 체크
         if(WallCheck()) return;

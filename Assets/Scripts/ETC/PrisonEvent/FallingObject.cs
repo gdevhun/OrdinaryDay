@@ -23,10 +23,11 @@ public class FallingObject : PrisonEventBase
         }
         else
         {
-            SoundManager.Instance.SFXPlay(SfxType.PickUpHammer);
+            SoundManager.Instance.SFXPlay(SfxType.FallingBodyBag1);
+            SoundManager.Instance.SFXPlay(SfxType.FallingBodyBag2);
         }
-        await UniTask.Delay(TimeSpan.FromSeconds(2.5f));
         SoundManager.Instance.SFXPlay(SfxType.WeirdSfx);
+        await UniTask.Delay(TimeSpan.FromSeconds(2.5f));
         UnActiveRigid();
     }
 }
