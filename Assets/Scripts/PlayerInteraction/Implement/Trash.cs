@@ -13,10 +13,12 @@ public class Trash : InteractionBase, IHandPickable
     // 기타 변수
     private bool isTrashBinNear; // 쓰레기통이 가까이있는지 체크
     [SerializeField] private List<GameObject> trashList = new List<GameObject>(); // 쓰레기 놓으면 활성화 시켜줄 쓰레기
+    [SerializeField] private ClipBoard clipBoard; // 클립보드
 
     // 플레이어가 근처에 있음
     protected override void OnTriggerEnter(Collider other)
     {
+        if(!clipBoard.isClipBoard) return; // 아직 클립보드를 확인하지 않았으면 리턴
         base.OnTriggerEnter(other);
         if(other.CompareTag("TrashBin")) isTrashBinNear = true;
     }
@@ -24,6 +26,7 @@ public class Trash : InteractionBase, IHandPickable
     // 플레이어가 근처에 없음
     protected override void OnTriggerExit(Collider other)
     {
+        if(!clipBoard.isClipBoard) return; // 아직 클립보드를 확인하지 않았으면 리턴
         base.OnTriggerExit(other);
         if(other.CompareTag("TrashBin")) isTrashBinNear = false;
     }
@@ -40,6 +43,8 @@ public class Trash : InteractionBase, IHandPickable
     // 쓰레기 들기
     protected override void On()
     {
+        if(!clipBoard.isClipBoard) return; // 아직 클립보드를 확인하지 않았으면 리턴
+
         // 들기
         PickUp();
 
@@ -50,6 +55,8 @@ public class Trash : InteractionBase, IHandPickable
     // 쓰레기 놓기
     protected override void Off()
     {
+        if(!clipBoard.isClipBoard) return; // 아직 클립보드를 확인하지 않았으면 리턴
+        
         // 놓기
         Drop();
 
