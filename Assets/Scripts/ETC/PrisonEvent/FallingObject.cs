@@ -25,8 +25,8 @@ public class FallingObject : PrisonEventBase
         {
             SoundManager.Instance.SFXPlay(SfxType.PickUpHammer);
         }
-        await UniTask.Delay(TimeSpan.FromSeconds(2.5f));
         SoundManager.Instance.SFXPlay(SfxType.WeirdSfx);
+        await UniTask.Delay(TimeSpan.FromSeconds(2.5f));
         UnActiveRigid();
     }
 }
