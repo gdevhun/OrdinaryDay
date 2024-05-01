@@ -8,6 +8,7 @@ public class ClipBoard : InteractionBase
 {
     [SerializeField] private GameObject clipBoardPanel; // 클립보드
     private RectTransform _rectTransform; // 클립보드패널 렉트
+    [SerializeField] public bool isClipBoard; // 클립보드를 확인했는지 체크
 
     // 초기화
     protected override void Awake()
@@ -32,6 +33,7 @@ public class ClipBoard : InteractionBase
     // 클립보드 확인하기
     protected override void On()
     {
+        if(!isClipBoard) isClipBoard = true; // 클립보드 확인함 => 쓰레기 상호작용 활성화
         clipBoardPanel.gameObject.SetActive(true);
         isInter = true;
         interactionText.text = "";
