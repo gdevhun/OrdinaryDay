@@ -13,6 +13,7 @@ public class Hammer : InteractionBase, IHandPickable
     private bool isBreak; // 문을 부셨는지 체크
     private bool isNearOscarRoomDoor; // OscarRoomDoor가 근처에 있는지 체크
     [SerializeField] private GameObject oscarRoomDoor; // oscarRoomDoor
+    [SerializeField] private GameObject oscarDeadEventCol;
 
     private void OnTriggerStay(Collider other)
     {
@@ -46,6 +47,7 @@ public class Hammer : InteractionBase, IHandPickable
         PlayerHand = GameObject.FindGameObjectWithTag("PlayerHand");
         Rigid = GetComponent<Rigidbody>();
         Coll = GetComponent<BoxCollider>();
+        oscarDeadEventCol.SetActive(false);
     }
 
     // 상호작용 실행
@@ -63,8 +65,8 @@ public class Hammer : InteractionBase, IHandPickable
             FadeManager.Instance.Fade(1.5f);
             SoundManager.Instance.SFXPlay(SfxType.BrokenOscarDoor);
             SoundManager.Instance.BgmSoundPlay(BgmType.Oscar);
-
-            // 오스카 컷씬
+            //오스카컷신
+            oscarDeadEventCol.gameObject.SetActive(true);
         }
     }
 
