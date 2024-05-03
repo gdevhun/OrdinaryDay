@@ -18,7 +18,7 @@ public class OscarDeadEvent : PrisonEventBase
     {
         FadeManager.Instance.Fade(1f);
         TimeLineManager.Instance.OnCutSceneObj(cutSceneType.OscarDead);
-        hammer.PeterView();
+        hammer.GetComponent<Hammer>().PeterView();
         player.gameObject.SetActive(false);
         await UniTask.WaitUntil(() => TimeLineManager.Instance.cutSceneDirector.state != PlayState.Playing);
         FadeManager.Instance.Fade(2f);
