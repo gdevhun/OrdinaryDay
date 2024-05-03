@@ -19,6 +19,7 @@ TagManager:
   - ControlRoomDoor
   - Metal
   - Plastic
+  - Peter
   layers:
   - Default
   - TransparentFX

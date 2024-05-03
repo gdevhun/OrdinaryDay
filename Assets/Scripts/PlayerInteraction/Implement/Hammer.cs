@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Hammer : InteractionBase, IHandPickable
@@ -46,6 +47,9 @@ public class Hammer : InteractionBase, IHandPickable
         PlayerHand = GameObject.FindGameObjectWithTag("PlayerHand");
         Rigid = GetComponent<Rigidbody>();
         Coll = GetComponent<BoxCollider>();
+
+        // Test
+        //PeterView();
     }
 
     // 상호작용 실행
@@ -65,6 +69,9 @@ public class Hammer : InteractionBase, IHandPickable
             SoundManager.Instance.BgmSoundPlay(BgmType.Oscar);
 
             // 오스카 컷씬
+
+            // 피터 시점
+            PeterView();
         }
     }
 
@@ -115,5 +122,14 @@ public class Hammer : InteractionBase, IHandPickable
 
         // 콜라이더 활성화
         Coll.enabled = true;
+    }
+
+    // 피터 시점
+    private void PeterView()
+    {
+        FirstPlayer firstPlayer = PlayerHand.GetComponentInParent<FirstPlayer>();
+        firstPlayer.transform.position = new Vector3(24f, 0f, 0f);
+        firstPlayer.transform.rotation = quaternion.Euler(0f, -90f, 0f);
+        firstPlayer.tag = "Peter";
     }
 }
