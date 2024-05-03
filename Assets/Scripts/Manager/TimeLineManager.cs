@@ -6,7 +6,7 @@ using UnityEngine.Playables;
 
 public enum cutSceneType
 {
-    Pill , Password, DanielPastView, OscarDead
+    Pill , Password, DanielPastView, OscarDead, DanielChase
 }
 public class TimeLineManager : Singleton<TimeLineManager>
 {
