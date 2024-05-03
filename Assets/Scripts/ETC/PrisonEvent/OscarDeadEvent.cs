@@ -7,6 +7,7 @@ using UnityEngine.Playables;
 public class OscarDeadEvent : PrisonEventBase
 {
     [SerializeField] private GameObject player;
+    [SerializeField] private Hammer hammer;
     protected override void EventOccur()
     {
         base.EventOccur();
@@ -17,11 +18,13 @@ public class OscarDeadEvent : PrisonEventBase
     {
         FadeManager.Instance.Fade(1f);
         TimeLineManager.Instance.OnCutSceneObj(cutSceneType.OscarDead);
+        hammer.PeterView();
         player.gameObject.SetActive(false);
         await UniTask.WaitUntil(() => TimeLineManager.Instance.cutSceneDirector.state != PlayState.Playing);
         FadeManager.Instance.Fade(2f);
         TimeLineManager.Instance.OffCutSceneObj(cutSceneType.OscarDead);
         
         //PETER씬으로 이동하기.
+        player.gameObject.SetActive(true);
     }
 }

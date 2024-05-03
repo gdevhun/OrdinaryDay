@@ -69,9 +69,6 @@ public class Hammer : InteractionBase, IHandPickable
             //오스카컷신
             oscarDeadEventCol.gameObject.SetActive(true);
 
-            // 피터 시점
-            PeterView();
-
             // 망치 비활성화
             gameObject.SetActive(false);
         }
@@ -127,7 +124,7 @@ public class Hammer : InteractionBase, IHandPickable
     }
 
     // 피터 시점
-    private void PeterView()
+    public void PeterView()
     {
         FirstPlayer firstPlayer = PlayerHand.GetComponentInParent<FirstPlayer>();
         firstPlayer.transform.position = new Vector3(24f, 0f, 0f);
