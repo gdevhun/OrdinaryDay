@@ -10,6 +10,7 @@ public class PlayerSelectionEvent : MonoBehaviour
     [SerializeField] private GameObject PlayerSelectionPanel;
     private bool _isSelected;
     [SerializeField] private GameObject Player;
+    [SerializeField] private DanielAI danielAI; // 다니엘
     private void Awake()
     {
         PlayerSelectionPanel.SetActive(false);
@@ -49,5 +50,9 @@ public class PlayerSelectionEvent : MonoBehaviour
        Player.transform.rotation= Quaternion.Euler(0,181.99f,0);
         //도망가는 상황으로 이동하기.
         //peter위치 이동하기.
+
+        // 2초 후에 다니엘 활성화
+        await UniTask.Delay(TimeSpan.FromSeconds(2f));
+        danielAI.gameObject.SetActive(true);
     }
 }

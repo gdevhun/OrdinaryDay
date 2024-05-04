@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection.Emit;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -15,6 +16,7 @@ public class Hammer : InteractionBase, IHandPickable
     private bool isNearOscarRoomDoor; // OscarRoomDoor가 근처에 있는지 체크
     [SerializeField] private GameObject oscarRoomDoor; // oscarRoomDoor
     [SerializeField] private GameObject oscarDeadEventCol;
+    [SerializeField] private GameObject lab; // 랩실
 
     private void OnTriggerStay(Collider other)
     {
@@ -68,6 +70,9 @@ public class Hammer : InteractionBase, IHandPickable
             SoundManager.Instance.BgmSoundPlay(BgmType.Oscar);
             //오스카컷신
             oscarDeadEventCol.gameObject.SetActive(true);
+
+            // 랩실 활성화
+            lab.SetActive(true);
 
             // 망치 비활성화
             gameObject.SetActive(false);

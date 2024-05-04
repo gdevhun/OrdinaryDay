@@ -31,6 +31,9 @@ public class MapTeleport : MonoBehaviour
     // DarkBG
     [Tooltip ("Prison 가림막")] [SerializeField] private GameObject darkBG;
 
+    // 다니엘
+    [SerializeField] DanielAI danielAI;
+
     // 맵 텔레포트
     public void Teleport() { TeleportTask().Forget(); }
     
@@ -44,11 +47,14 @@ public class MapTeleport : MonoBehaviour
         player.transform.position = mapTeleportPos.transform.position;
 
         // 플레이어 회전
-        player.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
+        if(activeMap.name.Equals("Prison")) player.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
 
         // 플레이어 스텝 비활성화
         playerStep.playerRunSound.SetActive(false);
         playerStep.playerWalkSound.SetActive(false);
+
+        // 다니엘 발 소리 비활성화
+        danielAI.danielRunSound.SetActive(false);
 
         // DarkBG 셋팅
         darkBG.SetActive(activeMap.name.Equals("Prison"));
@@ -71,5 +77,12 @@ public class MapTeleport : MonoBehaviour
         // 3초 후에
         await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
         deActiveMap.SetActive(false);
+
+        // 2초 후에 다니엘이 쫓아옴
+        await UniTask.Delay(TimeSpan.FromSeconds(2f));
+        danielAI.nav.Warp(mapTeleportPos.transform.position);
+
+        // 다니엘 발 소리 활성화
+        danielAI.danielRunSound.SetActive(true);
     }
 }
