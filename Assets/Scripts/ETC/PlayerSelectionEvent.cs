@@ -10,7 +10,6 @@ public class PlayerSelectionEvent : MonoBehaviour
     [SerializeField] private GameObject playerSelectionPanel;
     [SerializeField] private GameObject player;
     [SerializeField] private DanielAI danielAI; // 다니엘
-    [SerializeField] private GameObject chasedSFX; // 긴장감 있는 효과음
     private bool _isSelected;
     private Collider _collider;
     private void Awake()
@@ -61,7 +60,7 @@ public class PlayerSelectionEvent : MonoBehaviour
         // 2초 후에 다니엘 활성화
         await UniTask.Delay(TimeSpan.FromSeconds(2f));
         danielAI.gameObject.SetActive(true);
-        chasedSFX.SetActive(true);
+        danielAI.chasedSFX.SetActive(true);
         SoundManager.Instance.BgmSoundPlay(BgmType.DanielChase);
     }
 }
