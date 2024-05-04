@@ -57,7 +57,7 @@ public class MapTeleport : MonoBehaviour
         danielAI.danielRunSound.SetActive(false);
 
         // DarkBG 셋팅
-        darkBG.SetActive(activeMap.name.Equals("Prison"));
+        darkBG.SetActive(activeMap.name.Equals("Prison") || danielAI.gameObject.activeSelf);
         
         // 배경음 재생
         if(activeMap.name.Equals("Prison")) SoundManager.Instance.BgmSoundPlay(BgmType.PrisonEnter);
