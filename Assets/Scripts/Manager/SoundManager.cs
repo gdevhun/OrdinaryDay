@@ -119,7 +119,8 @@ public enum BgmType
 	Lab,
 	PrisonEnter,
 	KeyUse,
-    Oscar
+    Oscar,
+    DanielChase
 }
 
 // 재생할 효과음 타입 -> 키로 사용
