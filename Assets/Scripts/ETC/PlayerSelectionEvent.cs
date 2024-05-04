@@ -7,13 +7,15 @@ using UnityEngine.Playables;
 
 public class PlayerSelectionEvent : MonoBehaviour
 {
-    [SerializeField] private GameObject PlayerSelectionPanel;
-    private bool _isSelected;
-    [SerializeField] private GameObject Player;
+    [SerializeField] private GameObject playerSelectionPanel;
+    [SerializeField] private GameObject player;
     [SerializeField] private DanielAI danielAI; // 다니엘
+    private bool _isSelected;
+    private Collider _collider;
     private void Awake()
     {
-        PlayerSelectionPanel.SetActive(false);
+        playerSelectionPanel.SetActive(false);
+        _collider = GetComponent<Collider>();
     }
 
     void Update()
@@ -21,7 +23,8 @@ public class PlayerSelectionEvent : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Y) &&!_isSelected)
         {
             _isSelected = true;
-            PlayerSelectionPanel.SetActive(false);
+            playerSelectionPanel.SetActive(false);
+            
             StartCutScene().Forget();
             //프리즌으로 들어감. 컷신실행
         }
@@ -36,18 +39,21 @@ public class PlayerSelectionEvent : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        PlayerSelectionPanel.SetActive(true);
+        playerSelectionPanel.SetActive(true);
+        player.GetComponent<FirstPlayer>().isFade = true;
     }
 
     public async UniTask StartCutScene()
     {
+        _collider.enabled = false;
         FadeManager.Instance.Fade(1f);
         TimeLineManager.Instance.OnCutSceneObj(cutSceneType.DanielChase);
         await UniTask.WaitUntil(() => TimeLineManager.Instance.cutSceneDirector.state != PlayState.Playing);
         FadeManager.Instance.Fade(2f);
         TimeLineManager.Instance.OffCutSceneObj(cutSceneType.DanielChase);
-        Player.transform.position=new Vector3(-430.61f,-208.5f,5.34f);
-       Player.transform.rotation= Quaternion.Euler(0,181.99f,0);
+        player.transform.position=new Vector3(-430.61f,-208.5f,5.34f);
+        player.transform.rotation= Quaternion.Euler(0,181.99f,0);
+        player.GetComponent<FirstPlayer>().isFade = false;
         //도망가는 상황으로 이동하기.
         //peter위치 이동하기.
 
