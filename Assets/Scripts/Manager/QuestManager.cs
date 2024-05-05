@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-public class QuestManager : Singleton<QuestManager>
+public class QuestManager : SingletonBehaviour<QuestManager>
 {
 	public List<GameObject> triggerObject; //트리거체크할 씬 오브젝트
 	private string _selectedQuestName; 

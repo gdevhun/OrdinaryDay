@@ -35,6 +35,19 @@ public class Door : InteractionBase
             return;
         }
 
+        // 탈출 문 => True Ending
+        if(tag == "EscapeDoor")
+        {
+            MissionManager.Instance.trueEndingCredit.SetActive(true);
+            FirstPlayer firstPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPlayer>();
+            firstPlayer.isFade = true;
+            firstPlayer.gameObject.SetActive(false);
+            firstPlayer.danielAI.gameObject.SetActive(false);
+            SoundManager.Instance.BgmSoundPlay(BgmType.CreditBGM);
+            SoundManager.Instance.SFXPlay(SfxType.OpenDoor);
+            return;
+        }
+
         switch (tag)
         {   
             // 왼쪽문 및 튜토리얼 문

@@ -19,6 +19,8 @@ TagManager:
   - ControlRoomDoor
   - Metal
   - Plastic
+  - Peter
+  - EscapeDoor
   layers:
   - Default
   - TransparentFX

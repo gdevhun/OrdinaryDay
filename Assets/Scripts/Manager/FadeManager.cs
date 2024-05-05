@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 // 페이드 인/아웃
-public class FadeManager : Singleton<FadeManager>
+public class FadeManager : SingletonBehaviour<FadeManager>
 {
 	// 페이드 인/아웃 이미지
 	public GameObject fadeInOutImage;
@@ -14,7 +14,8 @@ public class FadeManager : Singleton<FadeManager>
 	float time = 0f;
 	
 	void Awake()
-    {
+	{
+		base.Awake();
 		fadeInOutImage.SetActive(false);
 	}
 

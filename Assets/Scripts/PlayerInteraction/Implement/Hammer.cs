@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection.Emit;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Hammer : InteractionBase, IHandPickable
@@ -13,6 +15,8 @@ public class Hammer : InteractionBase, IHandPickable
     private bool isBreak; // 문을 부셨는지 체크
     private bool isNearOscarRoomDoor; // OscarRoomDoor가 근처에 있는지 체크
     [SerializeField] private GameObject oscarRoomDoor; // oscarRoomDoor
+    [SerializeField] private GameObject oscarDeadEventCol;
+    [SerializeField] private GameObject lab; // 랩실
 
     private void OnTriggerStay(Collider other)
     {
@@ -46,6 +50,7 @@ public class Hammer : InteractionBase, IHandPickable
         PlayerHand = GameObject.FindGameObjectWithTag("PlayerHand");
         Rigid = GetComponent<Rigidbody>();
         Coll = GetComponent<BoxCollider>();
+        oscarDeadEventCol.SetActive(false);
     }
 
     // 상호작용 실행
@@ -63,8 +68,14 @@ public class Hammer : InteractionBase, IHandPickable
             FadeManager.Instance.Fade(1.5f);
             SoundManager.Instance.SFXPlay(SfxType.BrokenOscarDoor);
             SoundManager.Instance.BgmSoundPlay(BgmType.Oscar);
+            //오스카컷신
+            oscarDeadEventCol.gameObject.SetActive(true);
 
-            // 오스카 컷씬
+            // 랩실 활성화
+            lab.SetActive(true);
+
+            // 망치 비활성화
+            gameObject.SetActive(false);
         }
     }
 
@@ -115,5 +126,13 @@ public class Hammer : InteractionBase, IHandPickable
 
         // 콜라이더 활성화
         Coll.enabled = true;
+    }
+
+    // 피터 시점
+    public void PeterView()
+    {
+        FirstPlayer firstPlayer = PlayerHand.GetComponentInParent<FirstPlayer>();
+        firstPlayer.transform.position = new Vector3(24f, 0f, 0f);
+        firstPlayer.transform.rotation = quaternion.Euler(0f, -90f, 0f);
     }
 }

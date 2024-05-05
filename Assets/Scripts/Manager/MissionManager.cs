@@ -5,8 +5,14 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MissionManager : Singleton<MissionManager>
+public class MissionManager : SingletonBehaviour<MissionManager>
 {
+    public GameObject normalEndingCredit;
+    public GameObject trueEndingCredit;
+    public GameObject badEndingCredit;
+    
+    public GameObject interactionPanel; //인터렉션페널
+    
     public List<string> missionTextList;
     public GameObject missionTextPanel;
     public TextMeshProUGUI missionText;
@@ -18,9 +24,8 @@ public class MissionManager : Singleton<MissionManager>
     void Start()
     {
         missionTextPanel.SetActive(false);
-
     }
-
+    
     public void DisplayMissonText(string missionTxt)
     {
         missionTextPanel.SetActive(true);

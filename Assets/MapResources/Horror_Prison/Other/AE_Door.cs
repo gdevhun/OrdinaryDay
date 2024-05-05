@@ -14,6 +14,7 @@ public class AE_Door : MonoBehaviour
     public TMP_Text interactionText; // 상호작용 텍스트
     public bool isControl; // ControlRoomDoor인지 체크
     public bool isOscar; // OscarRoomDoor인지 체크
+    [SerializeField] private bool isIronCage; // 철창문인지 체크
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +36,9 @@ public class AE_Door : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && trig)
         {
             open = !open;
-            SoundManager.Instance.SFXPlay(SfxType.IronDoorOpen);
+
+            if(open) SoundManager.Instance.SFXPlay(isIronCage ? SfxType.IronCageDoorOpen : SfxType.IronDoorOpen);
+            else SoundManager.Instance.SFXPlay(isIronCage ? SfxType.IronCageDoorClose : SfxType.IronDoorOpen);
         }
         if (trig)
         {
