@@ -7,6 +7,11 @@ using UnityEngine.UI;
 
 public class MissionManager : Singleton<MissionManager>
 {
+    public GameObject normalEndingCredit;
+    public GameObject trueEndingCredit;
+    public GameObject badEndingCredit;
+    
+    
     public List<string> missionTextList;
     public GameObject missionTextPanel;
     public TextMeshProUGUI missionText;
