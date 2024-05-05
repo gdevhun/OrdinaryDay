@@ -85,15 +85,13 @@ public class DanielAI : MonoBehaviour
         killerView.SetActive(true);
         await UniTask.Delay(TimeSpan.FromSeconds(0.2f));
 
+        // 사운드
         SoundManager.Instance.SFXPlay(SfxType.DanielAtk1);
         await UniTask.Delay(TimeSpan.FromSeconds(0.2f));
         SoundManager.Instance.SFXPlay(SfxType.PeterHit1);
-
         await UniTask.Delay(TimeSpan.FromSeconds(0.3f));
-
         _animator.SetTrigger("DoAttack");
         await UniTask.Delay(TimeSpan.FromSeconds(0.2f));
-
         SoundManager.Instance.SFXPlay(SfxType.DanielAtk1);
         await UniTask.Delay(TimeSpan.FromSeconds(0.2f));
         SoundManager.Instance.SFXPlay(SfxType.PeterHit2); 
@@ -114,9 +112,9 @@ public class DanielAI : MonoBehaviour
 
         chasedSFX.SetActive(false);
 
+        // 사운드
         await UniTask.Delay(TimeSpan.FromSeconds(0.2f));
         SoundManager.Instance.SFXPlay(SfxType.PeterHit1);
-
         await UniTask.Delay(TimeSpan.FromSeconds(0.2f));
         SoundManager.Instance.SFXPlay(SfxType.PeterHit2);
 

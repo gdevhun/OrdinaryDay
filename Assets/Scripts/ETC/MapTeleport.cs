@@ -54,7 +54,7 @@ public class MapTeleport : MonoBehaviour
         playerStep.playerWalkSound.SetActive(false);
 
         // 다니엘 발 소리 비활성화
-        danielAI.danielRunSound.SetActive(false);
+        if(danielAI.gameObject.activeSelf) danielAI.danielRunSound.SetActive(false);
 
         // DarkBG 셋팅
         darkBG.SetActive(activeMap.name.Equals("Prison") || danielAI.gameObject.activeSelf);
@@ -77,12 +77,15 @@ public class MapTeleport : MonoBehaviour
         // 3초 후에
         await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
         deActiveMap.SetActive(false);
+        
+        if(danielAI.gameObject.activeSelf)
+        {
+            // 2초 후에 다니엘이 쫓아옴
+            await UniTask.Delay(TimeSpan.FromSeconds(2f));
+            danielAI.nav.Warp(mapTeleportPos.transform.position);
 
-        // 2초 후에 다니엘이 쫓아옴
-        await UniTask.Delay(TimeSpan.FromSeconds(2f));
-        danielAI.nav.Warp(mapTeleportPos.transform.position);
-
-        // 다니엘 발 소리 활성화
-        danielAI.danielRunSound.SetActive(true);
+            // 다니엘 발 소리 활성화
+            danielAI.danielRunSound.SetActive(true);
+        }
     }
 }
