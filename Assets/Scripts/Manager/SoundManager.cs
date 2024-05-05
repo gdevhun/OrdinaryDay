@@ -139,5 +139,5 @@ public enum SfxType
     ScatteringItem1, ScatteringItem2, ScatteringItem3, ScatteringItem4,
     FallingBodyBag1, FallingBodyBag2, IronScratch,
     IronCageDoorOpen, IronCageDoorClose,
-    DanielAtk
+    DanielAtk1, DanielAtk2, PeterHit1, PeterHit2
 }
