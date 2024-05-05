@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Analytics;
@@ -42,7 +43,7 @@ public class DanielAI : MonoBehaviour
         // 5.킬러뷰 활성화
         // 6.플레이어 쓰러짐
         // 7.페이드 후 베드엔딩
-        StartCoroutine(PlayerDeadCo());
+        PlayerDead().Forget();
     }
 
     // 플레이어로부터의 방향과 거리 계산
@@ -56,8 +57,8 @@ public class DanielAI : MonoBehaviour
         return _playerDis > killDis ? true : false;
     }
 
-    // 플레이어 죽는 코루틴
-    private IEnumerator PlayerDeadCo()
+    // 플레이어 죽음
+    private async UniTaskVoid PlayerDead()
     {
         // 1.플레이어 죽고 페이드
         isDead = true;
@@ -75,14 +76,16 @@ public class DanielAI : MonoBehaviour
         firstPlayer.GetComponent<PlayerStep>().playerWalkSound.SetActive(false);
 
         // 페이드 끝날 때 까지 대기
-        yield return new WaitForSeconds(2.5f);
+        await UniTask.Delay(TimeSpan.FromSeconds(2.5f));
 
         // 4.다니엘이 톱으로 플레이어 찌르기
         _animator.SetTrigger("DoAttack");
 
         // 5.킬러뷰 활성화
         killerView.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
+        await UniTask.Delay(TimeSpan.FromSeconds(0.2f));
+        SoundManager.Instance.SFXPlay(SfxType.DanielAtk);
+        await UniTask.Delay(TimeSpan.FromSeconds(0.3f));
 
         // 6.플레이어 쓰러짐
         float elapsed = 0f;
@@ -95,13 +98,13 @@ public class DanielAI : MonoBehaviour
             elapsed += Time.deltaTime;
             float time = Mathf.Clamp01(elapsed / duration);
             firstPlayer.transform.rotation = Quaternion.Slerp(startRot, endRot, time);
-            yield return null;
+            await UniTask.Yield();
         }
 
         chasedSFX.SetActive(false);
 
         // 7.페이드 후 베드엔딩
         FadeManager.Instance.Fade(2f);
-        yield return new WaitForSeconds(2f);
+        await UniTask.Delay(TimeSpan.FromSeconds(2f));
     }
 }

@@ -138,5 +138,6 @@ public enum SfxType
     BodyBagMove, WeirdSfx, MetalFallSfx, WeirdSfx2, GhostMoan,
     ScatteringItem1, ScatteringItem2, ScatteringItem3, ScatteringItem4,
     FallingBodyBag1, FallingBodyBag2, IronScratch,
-    IronCageDoorOpen, IronCageDoorClose
+    IronCageDoorOpen, IronCageDoorClose,
+    DanielAtk
 }
