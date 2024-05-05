@@ -20,6 +20,7 @@ public class DanielAI : MonoBehaviour
     [SerializeField] private GameObject killerView; // 킬러뷰
     [SerializeField] private Transform lookPos; // 죽을 때 볼 위치
     public GameObject chasedSFX; // 긴장감 있는 효과음
+    [SerializeField] GameObject playerBreathSound; // 플레이어 숨소리
 
     // 플레이어로부터의 방향과 거리 계산 후 추적
     private void Update()
@@ -120,6 +121,7 @@ public class DanielAI : MonoBehaviour
 
         // 7.페이드 후 베드엔딩
         FadeManager.Instance.Fade(2f);
+        playerBreathSound.SetActive(true);
         await UniTask.Delay(TimeSpan.FromSeconds(2f));
     }
 }
