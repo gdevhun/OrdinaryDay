@@ -25,6 +25,8 @@ public class FirstPlayer : MonoBehaviour
     private float _mouseY; // 마우스 상하 축값
     [SerializeField] private CinemachineVirtualCamera _playerCamera; // 플레이어 카메라
 
+    public DanielAI danielAI; // 다니엘
+
     // 마우스 커서가 게임화면을 벗어나지않도록 잠금
 	private void Awake() { Cursor.lockState = CursorLockMode.Locked; }
 

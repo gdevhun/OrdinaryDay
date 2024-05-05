@@ -10,6 +10,7 @@ public class PlayerSelectionEvent : MonoBehaviour
     [SerializeField] private GameObject playerSelectionPanel;
     [SerializeField] private GameObject player;
     [SerializeField] private DanielAI danielAI; // 다니엘
+    [SerializeField] private BoxCollider escapeDoorCol; // 탈출 문
     private bool _isSelected;
     private Collider _collider;
     private void Awake()
@@ -24,7 +25,7 @@ public class PlayerSelectionEvent : MonoBehaviour
         {
             _isSelected = true;
             playerSelectionPanel.SetActive(false);
-            
+            escapeDoorCol.enabled = true;
             StartCutScene().Forget();
             //프리즌으로 들어감. 컷신실행
         }

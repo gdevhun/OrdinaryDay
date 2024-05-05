@@ -20,6 +20,7 @@ TagManager:
   - Metal
   - Plastic
   - Peter
+  - EscapeDoor
   layers:
   - Default
   - TransparentFX
