@@ -61,6 +61,9 @@ public class DanielAI : MonoBehaviour
     // 플레이어 죽음
     private async UniTaskVoid PlayerDead()
     {
+        // 0.플레이어가 잡혔을때 상호작용페널비활성화
+        MissionManager.Instance.interactionPanel.SetActive(false); 
+        
         // 1.플레이어 죽고 페이드
         isDead = true;
         FadeManager.Instance.Fade(2f);
@@ -119,9 +122,16 @@ public class DanielAI : MonoBehaviour
         await UniTask.Delay(TimeSpan.FromSeconds(0.2f));
         SoundManager.Instance.SFXPlay(SfxType.PeterHit2);
 
-        // 7.페이드 후 베드엔딩
+        // 7.페이드 
         FadeManager.Instance.Fade(2f);
         playerBreathSound.SetActive(true);
         await UniTask.Delay(TimeSpan.FromSeconds(2f));
+        
+        //8.베드엔딩
+        MissionManager.Instance.badEndingCredit.SetActive(true);
+        playerBreathSound.SetActive(false);
+        killerView.SetActive(false);
+        danielRunSound.gameObject.SetActive(false);
+        SoundManager.Instance.BgmSoundPlay(BgmType.CreditBGM);
     }
 }

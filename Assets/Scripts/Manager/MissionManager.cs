@@ -11,6 +11,7 @@ public class MissionManager : SingletonBehaviour<MissionManager>
     public GameObject trueEndingCredit;
     public GameObject badEndingCredit;
     
+    public GameObject interactionPanel; //인터렉션페널
     
     public List<string> missionTextList;
     public GameObject missionTextPanel;

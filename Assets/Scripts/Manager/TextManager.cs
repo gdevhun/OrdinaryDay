@@ -31,7 +31,6 @@ public class TextManager : SingletonBehaviour<TextManager>
 	private async UniTaskVoid DisplayText(string message) // 텍스트출력 코루틴
 	{
 		_totalText = message;
-		Debug.Log(_totalText);
 		_tempTextBuilder.Clear(); //텍스트 초기화(비워주고)
 		_tempSource = new CancellationTokenSource();
 		
@@ -42,7 +41,6 @@ public class TextManager : SingletonBehaviour<TextManager>
 			await UniTask.Delay(TimeSpan.FromSeconds(0.06),cancellationToken: _tempSource.Token); // 0.1f에 맞춰 텍스트 출력
 		}
 		isOverTextRoutine = true; //다출력됨.
-		Debug.Log("출력완료.");
 	}
 
 }

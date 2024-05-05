@@ -10,9 +10,9 @@ public class PlayerSelectionEvent : MonoBehaviour
     [SerializeField] private GameObject playerSelectionPanel;
     [SerializeField] private GameObject player;
     [SerializeField] private DanielAI danielAI; // 다니엘
-    [SerializeField] private BoxCollider escapeDoorCol; // 탈출 문
-    private bool _isSelected;
-    private Collider _collider;
+    public BoxCollider escapeDoorCol; // 탈출 문
+    public bool isSelected;
+    public Collider _collider;
     private void Awake()
     {
         playerSelectionPanel.SetActive(false);
@@ -21,17 +21,17 @@ public class PlayerSelectionEvent : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Y) &&!_isSelected)
+        if (Input.GetKeyDown(KeyCode.Y) &&!isSelected)
         {
-            _isSelected = true;
+            isSelected = true;
             playerSelectionPanel.SetActive(false);
             escapeDoorCol.enabled = true;
             StartCutScene().Forget();
             //프리즌으로 들어감. 컷신실행
         }
-        else if (Input.GetKeyDown(KeyCode.N) &&!_isSelected)
+        else if (Input.GetKeyDown(KeyCode.N) &&!isSelected)
         {
-            _isSelected = true;
+            isSelected = true;
             MissionManager.Instance.normalEndingCredit.SetActive(true);
             //노말엔딩 페널 진행
             

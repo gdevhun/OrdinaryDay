@@ -20,7 +20,6 @@ public class DanielChaseOn : MonoBehaviour
     public void OnChase()
     {
         _thisTrans.rotation = _targetRotation;
-        Debug.Log(_thisTrans.rotation);
         MoveOverTime(_targetPosition,_duration).Forget();
     }
     private async UniTaskVoid MoveOverTime(Vector3 targetPosition, float duration)
