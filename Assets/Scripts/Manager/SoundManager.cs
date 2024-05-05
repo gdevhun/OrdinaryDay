@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-public class SoundManager : Singleton<SoundManager>
+public class SoundManager : SingletonBehaviour<SoundManager>
 {
 	[SerializeField] private AudioSource bgmSound; // 배경음 오디오
 	[SerializeField] private AudioClip[] bgmList, sfxList; // 배경음 및 효과음 리스트
@@ -15,6 +15,7 @@ public class SoundManager : Singleton<SoundManager>
     
 	private void Awake()
     {
+        base.Awake();
          // 볼륨 초기화
          bgmVolume = 0.1f;
          sfxVolume = 1f;
@@ -120,7 +121,8 @@ public enum BgmType
 	PrisonEnter,
 	KeyUse,
     Oscar,
-    DanielChase
+    DanielChase,
+    CreditBGM
 }
 
 // 재생할 효과음 타입 -> 키로 사용

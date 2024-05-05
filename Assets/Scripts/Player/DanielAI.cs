@@ -93,7 +93,7 @@ public class DanielAI : MonoBehaviour
         await UniTask.Delay(TimeSpan.FromSeconds(0.3f));
         _animator.SetTrigger("DoAttack");
         await UniTask.Delay(TimeSpan.FromSeconds(0.2f));
-        SoundManager.Instance.SFXPlay(SfxType.DanielAtk1);
+        SoundManager.Instance.SFXPlay(SfxType.DanielAtk2);
         await UniTask.Delay(TimeSpan.FromSeconds(0.2f));
         SoundManager.Instance.SFXPlay(SfxType.PeterHit2); 
 

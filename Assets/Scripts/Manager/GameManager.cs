@@ -2,7 +2,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameManager : Singleton<GameManager>
+public class GameManager : SingletonBehaviour<GameManager>
 {
 
 	public GameObject SettingPanel; //세팅페널

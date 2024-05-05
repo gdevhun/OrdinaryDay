@@ -7,7 +7,7 @@ using TMPro;
 using System.Text;
 using System.Threading; // StringBuilder를 사용하기 위한 네임스페이스 추가
 
-public class TextManager : Singleton<TextManager>
+public class TextManager : SingletonBehaviour<TextManager>
 {
 	public GameObject talkTextUI; 
 	public TextMeshProUGUI talkText; 
