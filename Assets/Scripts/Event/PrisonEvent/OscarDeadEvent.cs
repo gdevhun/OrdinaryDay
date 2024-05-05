@@ -8,6 +8,7 @@ public class OscarDeadEvent : PrisonEventBase
 {
     [SerializeField] private GameObject player;
     [SerializeField] private Hammer hammer;
+    [SerializeField] private GameObject sideDarkBG;
     protected override void EventOccur()
     {
         base.EventOccur();
@@ -26,5 +27,6 @@ public class OscarDeadEvent : PrisonEventBase
         
         //PETER씬으로 이동하기.
         player.gameObject.SetActive(true);
+        sideDarkBG.gameObject.SetActive(false);
     }
 }
