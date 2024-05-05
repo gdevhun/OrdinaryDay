@@ -31,7 +31,7 @@ public class PlayerSelectionEvent : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.N) &&!_isSelected)
         {
             _isSelected = true;
-            
+            MissionManager.Instance.normalEndingCredit.SetActive(true);
             //노말엔딩 페널 진행
             
         }

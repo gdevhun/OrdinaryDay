@@ -17,7 +17,7 @@ public class GameManager : Singleton<GameManager>
 	}
 
 	//메뉴씬 UI 컨트롤러 부분
-	#region
+	
 	public void StartGame()
 	{
 		SceneManager.LoadScene("LoadingScene");
@@ -32,11 +32,16 @@ public class GameManager : Singleton<GameManager>
 		// 메뉴 비활성화
 		menuPanel.gameObject.SetActive(false);
 	}
+
+	public void GoMenuScene()
+	{
+		SceneManager.LoadScene("MenuScene");
+	}
 	public void ExitGame()
 	{
 		Application.Quit();
 	}
-	#endregion 
+	
 
 	// 옵션에서 메인으로
 	public void OptionToMain()

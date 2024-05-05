@@ -23,9 +23,8 @@ public class MissionManager : Singleton<MissionManager>
     void Start()
     {
         missionTextPanel.SetActive(false);
-
     }
-
+    
     public void DisplayMissonText(string missionTxt)
     {
         missionTextPanel.SetActive(true);
