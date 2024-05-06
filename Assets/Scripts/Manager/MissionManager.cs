@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MissionManager : SingletonBehaviour<MissionManager>
+public class MissionManager : DestroySingleton<MissionManager>
 {
     public GameObject normalEndingCredit;
     public GameObject trueEndingCredit;

@@ -7,7 +7,7 @@ public abstract class SingletonBehaviour<T> : MonoBehaviour where T : MonoBehavi
     public static T Instance { get; private set; } = null;
 
     /// <summary>
-    /// ½Ì±ÛÅæ »ó¼Ó ÈÄ Awake() ÀÛ¼º ½Ã ¹Ýµå½Ã Á¦ÀÏ Ã³À½¿¡ base.Awake()¸¦ ½ÇÇàÇØ ÁÖ¾î¾ß ÇÔ.
+    /// ï¿½Ì±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ Awake() ï¿½Û¼ï¿½ ï¿½ï¿½ ï¿½Ýµï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ base.Awake()ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ ï¿½ï¿½.
     /// </summary>
     protected virtual void Awake()
     {
@@ -23,7 +23,7 @@ public abstract class SingletonBehaviour<T> : MonoBehaviour where T : MonoBehavi
     }
 
     /// <summary>
-    /// ½Ì±ÛÅæ »ó¼Ó ÈÄ OnDestroy() ÀÛ¼º ½Ã ¹Ýµå½Ã Á¦ÀÏ Ã³À½¿¡ base.OnDestroy()¸¦ ½ÇÇàÇØ ÁÖ¾î¾ß ÇÔ.
+    /// ï¿½Ì±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ OnDestroy() ï¿½Û¼ï¿½ ï¿½ï¿½ ï¿½Ýµï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ base.OnDestroy()ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ ï¿½ï¿½.
     /// </summary>
     protected virtual void OnDestroy()
     {
