@@ -10,9 +10,10 @@ public class PlayerSelectionEvent : MonoBehaviour
     [SerializeField] private GameObject playerSelectionPanel;
     [SerializeField] private GameObject player;
     [SerializeField] private DanielAI danielAI; // 다니엘
+    [SerializeField] private GameObject block; // 플레이어 이동 막기
     public BoxCollider escapeDoorCol; // 탈출 문
     public bool isSelected;
-    public Collider _collider;
+    private Collider _collider;
     private void Awake()
     {
         playerSelectionPanel.SetActive(false);
@@ -62,6 +63,7 @@ public class PlayerSelectionEvent : MonoBehaviour
         await UniTask.Delay(TimeSpan.FromSeconds(2f));
         danielAI.gameObject.SetActive(true);
         danielAI.chasedSFX.SetActive(true);
+        block.SetActive(true);
         SoundManager.Instance.BgmSoundPlay(BgmType.DanielChase);
     }
 }
