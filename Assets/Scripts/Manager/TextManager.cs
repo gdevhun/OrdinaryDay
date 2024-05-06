@@ -7,14 +7,14 @@ using TMPro;
 using System.Text;
 using System.Threading; // StringBuilder를 사용하기 위한 네임스페이스 추가
 
-public class TextManager : SingletonBehaviour<TextManager>
+public class TextManager : DestroySingleton<TextManager>
 {
 	public GameObject talkTextUI; 
 	public TextMeshProUGUI talkText; 
 	private StringBuilder _tempTextBuilder;
 	private string _totalText;
 	private CancellationTokenSource _tempSource = new CancellationTokenSource();
-	public bool isOverTextRoutine = false; //텍스트출력이 되고있는지의 bool변수
+	public bool isOverTextRoutine = false; //텍스트출력이 되고있는지의 bool변수 
 
 	void Start()
 	{
