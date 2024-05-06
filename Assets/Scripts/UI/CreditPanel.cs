@@ -4,8 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class CreditPanel : MonoBehaviour
 {
-    public Collider selectTrigger;
-
+    //public Collider selectTrigger;
     private void OnEnable()
     {
         SoundManager.Instance.BgmSoundPlay(BgmType.CreditBGM);
