@@ -3,9 +3,30 @@
 ### Ordinary Day
 <img width="600" src="https://github.com/gdevhun/gdevhun/assets/150761282/0639992c-24f2-4eae-9ef2-e75df46786ad">
 
+### 인게임씬
+<details>
+<summary>접기/펼치기 버튼</summary>
+<div markdown="1">
+
+#### 메뉴 씬
+<img width="600" src="https://github.com/gdevhun/gdevhun/assets/150761282/df2d2ff2-de24-4f98-814c-f4b5d7ecbd66">
+
+#### 로딩 씬
+<img width="600" src="https://github.com/gdevhun/gdevhun/assets/150761282/0fbfcbd9-8286-41d3-ba8e-5e17ff01cb88">
+
+#### 게임 씬1
+<img width="600" src="https://github.com/gdevhun/gdevhun/assets/150761282/293396d1-d43d-46c3-8d28-71bceef104fa">
+
+#### 게임 씬2
+<img width="600" src="https://github.com/gdevhun/gdevhun/assets/150761282/a9da82d5-96be-4883-b1f1-ef50bb749d5a">
+
+#### 게임 씬3
+<img width="600" src="https://github.com/gdevhun/gdevhun/assets/150761282/66155b29-c39b-45ad-96fa-e54e7e6dc7c2">
+
+</div>
+</details>
+
 ## 개발 기간 📅
-
-
 #### 2024.03.07~ 2024.05.07
 
 ## 역할 분담 🧑‍💻
@@ -18,7 +39,7 @@
 ## 프로젝트 스케줄링 & 시연영상
 <a href="https://river-pearl-643.notion.site/UnityTeamProject-06bfc7d0cf334de69735aa4340d57176?pvs=4" target="_blank"><img src="https://img.shields.io/badge/Notion-blue?style=flat-square&logoColor=CC6699"/></a>
 
-![Youtube Badge](https://img.shields.io/badge/Youtube-ff0000?style=flat-square&logo=youtube&link=https://youtu.be/aga8AXHjsmA)
+<a href="https://youtu.be/aga8AXHjsmA" target="_blank"><img src="https://img.shields.io/badge/Youtube-Red?style=flat-square&logoColor=FF0000"/></a>
  
 ## 기술 스택 💻
 <img src="https://img.shields.io/badge/Unity-FFFFFF?style=for-the-badge&logo=Unity&logoColor=black">
