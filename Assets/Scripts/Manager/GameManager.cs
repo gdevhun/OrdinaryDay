@@ -8,6 +8,7 @@ public class GameManager : SingletonBehaviour<GameManager>
 	public GameObject menuPanel; // 메뉴페널
     public Slider bgmSlider; // 배경음 슬라이더
     public Slider sfxSlider; // 효과음 슬라이더
+	public GameObject startSound; // 게임 시작 시 소리
 	private void Start()
 	{
 		Screen.SetResolution(1920, 1080, true);
@@ -19,6 +20,7 @@ public class GameManager : SingletonBehaviour<GameManager>
 	
 	public void StartGame()
 	{
+		startSound.SetActive(true);
 		SceneManager.LoadScene("LoadingScene");
 	}
 

@@ -22,8 +22,9 @@ public class FallingObject : PrisonEventBase
             SoundManager.Instance.SFXPlay(SfxType.MetalFallSfx);
         }
         else
-        {
+        {   //TAG="PLASTIC"
             SoundManager.Instance.SFXPlay(SfxType.FallingBodyBag1);
+            await UniTask.Delay(TimeSpan.FromSeconds(2f));
             SoundManager.Instance.SFXPlay(SfxType.FallingBodyBag2);
         }
         SoundManager.Instance.SFXPlay(SfxType.WeirdSfx);

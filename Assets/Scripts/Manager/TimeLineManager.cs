@@ -8,7 +8,7 @@ public enum cutSceneType
 {
     Pill , Password, DanielPastView, OscarDead, DanielChase
 }
-public class TimeLineManager : SingletonBehaviour<TimeLineManager>
+public class TimeLineManager : DestroySingleton<TimeLineManager>
 {
     public List<GameObject> cutSceneList = new List<GameObject>(); //컷신obj리스트
     public GameObject playerCam; //비활성화할 플레이어 가상캠
