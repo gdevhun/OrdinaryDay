@@ -33,7 +33,7 @@ public class AE_Door : MonoBehaviour
         {
             transform.eulerAngles = Vector3.Slerp(transform.eulerAngles, defaulRot, Time.deltaTime * smooth);
         }
-        if (Input.GetKeyDown(KeyCode.E) && trig)
+        if (Input.GetKeyDown(KeyCode.E) && trig && !isOscar)
         {
             open = !open;
 
