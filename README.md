@@ -36,6 +36,7 @@
 | 원동훈 | PM, Developer | PM, 기획, 개발 |
 | 이중휘 | Developer | 개발 |
 
+
 ## 프로젝트 스케줄링 & 시연영상 
 #### ⬇ Link Here ⬇
 <a href="https://river-pearl-643.notion.site/UnityTeamProject-06bfc7d0cf334de69735aa4340d57176?pvs=4" target="_blank"><img width="65" height="25" src="https://github.com/gdevhun/gdevhun/assets/150761282/d251202a-1b53-4ffe-bd0b-b9336e44218e"/></a>
