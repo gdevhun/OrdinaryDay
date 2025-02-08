@@ -39,9 +39,14 @@
 
 ## 프로젝트 스케줄링 & 시연영상 
 #### ⬇ Link Here ⬇
-<a href="https://river-pearl-643.notion.site/UnityTeamProject-06bfc7d0cf334de69735aa4340d57176?pvs=4" target="_blank"><img width="65" height="25" src="https://github.com/gdevhun/gdevhun/assets/150761282/d251202a-1b53-4ffe-bd0b-b9336e44218e"/></a>
- 
-<a href="https://youtu.be/aga8AXHjsmA" target="_blank"><img width="65" height="25" src="https://github.com/gdevhun/gdevhun/assets/150761282/67d883af-15ba-4ead-997d-da1ecfbd326a"/></a>
+<a href="https://river-pearl-643.notion.site/UnityTeamProject-06bfc7d0cf334de69735aa4340d57176?pvs=4" target="_blank">
+  <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white" />
+</a>
+&nbsp;&nbsp;
+<a href="https://youtu.be/aga8AXHjsmA" target="_blank">
+  <img src="https://img.shields.io/badge/YouTube-%23FF0000?style=for-the-badge&logo=youtube&logoColor=white" />
+</a>
+
  
 ## 기술 스택 💻
 <img src="https://img.shields.io/badge/Unity-FFFFFF?style=for-the-badge&logo=Unity&logoColor=black">
